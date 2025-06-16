@@ -10,11 +10,10 @@ public class Utilisateur {
     private String genre;
     private String email;
     private String mdp;
-
-    public Utilisateur() {}
-
-    public Utilisateur(int idUser, String nom, String prenom, String telephone, String adresse,
-                       String role, String genre, String email, String mdp) {
+    
+    // Constructeur
+    public Utilisateur(int idUser, String nom, String prenom, String telephone, String adresse, 
+                      String role, String genre, String email, String mdp) {
         this.idUser = idUser;
         this.nom = nom;
         this.prenom = prenom;
@@ -26,7 +25,6 @@ public class Utilisateur {
         this.mdp = mdp;
     }
 
-    // Getters et Setters
     public int getIdUser() {
         return idUser;
     }
@@ -98,8 +96,7 @@ public class Utilisateur {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
-
-    public String getPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
+    
+    
 }

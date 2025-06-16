@@ -125,9 +125,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="mdp_pf" min="-2" pref="177" max="-2" attributes="0"/>
-                                  <Component id="email_tf" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="mdp_pf" pref="177" max="32767" attributes="0"/>
                                   <Component id="annuler_btn" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <Component id="email_tf" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="69" max="32767" attributes="0"/>
                           </Group>
@@ -154,11 +154,11 @@
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                  <Component id="email_tf" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="email_tf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mdp_pf" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -305,13 +305,6 @@
         <Property name="text" type="java.lang.String" value="Mot de passe"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="email_tf">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="annuler_btn">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -357,6 +350,11 @@
     <Component class="javax.swing.JPasswordField" name="mdp_pf">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mdp_pfActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="email_tf">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="email_tfActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -4,10 +4,10 @@
  */
 package ui;
 
-import models.Utilisateur.*;
+import models.Utilisateur;
 import dao.UtilisateurDao;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.Utilisateur;
 import utils.UtilsFonction;
@@ -47,11 +47,11 @@ public class ConnexionForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        email_tf = new javax.swing.JPasswordField();
         annuler_btn = new javax.swing.JButton();
         connexion_btn = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         mdp_pf = new javax.swing.JPasswordField();
+        email_tf = new javax.swing.JTextField();
 
         jPanel6.setBackground(new java.awt.Color(0, 102, 0));
 
@@ -167,8 +167,6 @@ public class ConnexionForm extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 102, 0));
         jLabel12.setText("Mot de passe");
 
-        email_tf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
         annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
         annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,6 +192,12 @@ public class ConnexionForm extends javax.swing.JFrame {
             }
         });
 
+        email_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                email_tfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -212,9 +216,9 @@ public class ConnexionForm extends javax.swing.JFrame {
                                     .addComponent(connexion_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(58, 58, 58)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(mdp_pf, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(email_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(annuler_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(mdp_pf, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(annuler_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(email_tf))
                                 .addContainerGap(69, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -232,10 +236,10 @@ public class ConnexionForm extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel9)
                 .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(email_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(mdp_pf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -257,44 +261,41 @@ public class ConnexionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_mdp_pfActionPerformed
 
     private void connexion_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexion_btnActionPerformed
-        // TODO add your handling code here:                                           
+        // TODO add your handling code here:                                                                                                                                                                            
     try {
         String email = email_tf.getText().trim();
-        String password = mdp_pf.getText().trim();
-
-        // Chiffrer le mot de passe avant envoi à la méthode connecter
-        String encryptedPassword = UtilsFonction.encrypt(password);
-
-        // Appel DAO
-        Utilisateur user = UtilisateurDao.connecter(email, encryptedPassword);
-
-        if (user != null) {
-            // Redirection selon le rôle
-            String role = user.getRole().toLowerCase();
-
-            switch (role) {
-                case "admin":
-//                    new AdminDashboard(user).setVisible(true); // Remplace par ta vraie classe
-                    this.dispose(); // Ferme la fenêtre de login
-                    break;
-                case "agriculteur":
-//                    new AgriculteurDashboard(user).setVisible(true); // Remplace par ta vraie classe
-                    this.dispose();
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(this, "Rôle inconnu : " + role);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Email ou mot de passe incorrect !");
+        String password = new String(mdp_pf.getPassword());
+        System.out.println("Email saisi: " + email);
+        System.out.println("Mot de passe saisi: " + password);
+        
+        if (email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-    } catch (SQLException | ClassNotFoundException ex) {
-//        Logger.getLogger(ConnexionForm.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(this, "Erreur lors de la connexion !");
+        
+        Utilisateur user = UtilisateurDao.connexionUser(email);
+        
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "Email incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        System.out.println("Mot de passe en base: " + user.getMdp());
+        if (password.equals(user.getMdp())) {
+        String role = user.getRole().equals("admin") ? "Admin" : "Agriculteur";
+        JOptionPane.showMessageDialog(this, "Connexion réussie (" + role + ")", "Succès", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Mot de passe incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception ex) {
+        Logger.getLogger(ConnexionForm.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(this, "Erreur technique", "Erreur", JOptionPane.ERROR_MESSAGE);
     }
 
-
     }//GEN-LAST:event_connexion_btnActionPerformed
+
+    private void email_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_tfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_email_tfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,7 +366,7 @@ public class ConnexionForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton annuler_btn;
     private javax.swing.JButton connexion_btn;
-    private javax.swing.JPasswordField email_tf;
+    private javax.swing.JTextField email_tf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

@@ -171,6 +171,11 @@ public class ConnexionForm extends javax.swing.JFrame {
         annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
         annuler_btn.setText("Annuler");
+        annuler_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                annuler_btnMouseClicked(evt);
+            }
+        });
 
         connexion_btn.setBackground(new java.awt.Color(0, 102, 0));
         connexion_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -206,10 +211,14 @@ public class ConnexionForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -218,24 +227,19 @@ public class ConnexionForm extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(mdp_pf, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                     .addComponent(annuler_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(email_tf))
-                                .addContainerGap(69, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel14)
-                        .addContainerGap())))
+                                    .addComponent(email_tf)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(174, 174, 174)
+                                .addComponent(jLabel14)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel9)
-                .addGap(110, 110, 110)
+                .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(email_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,40 +266,72 @@ public class ConnexionForm extends javax.swing.JFrame {
 
     private void connexion_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexion_btnActionPerformed
         // TODO add your handling code here:                                                                                                                                                                            
-    try {
+        try {
+        // Récupération des valeurs des champs
         String email = email_tf.getText().trim();
         String password = new String(mdp_pf.getPassword());
-        System.out.println("Email saisi: " + email);
-        System.out.println("Mot de passe saisi: " + password);
         
+        // Vérification des champs vides
         if (email.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                "Veuillez remplir tous les champs", 
+                "Erreur", 
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
         
+        // Récupération de l'utilisateur
         Utilisateur user = UtilisateurDao.connexionUser(email);
         
         if (user == null) {
-            JOptionPane.showMessageDialog(this, "Email incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                "Email incorrect", 
+                "Erreur", 
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
-        System.out.println("Mot de passe en base: " + user.getMdp());
+        
+        // Vérification du mot de passe
         if (password.equals(user.getMdp())) {
-        String role = user.getRole().equals("admin") ? "Admin" : "Agriculteur";
-        JOptionPane.showMessageDialog(this, "Connexion réussie (" + role + ")", "Succès", JOptionPane.INFORMATION_MESSAGE);
+            String role = user.getRole().equals("admin") ? "Admin" : "Agriculteur";
+            JOptionPane.showMessageDialog(this, 
+                "Connexion réussie (" + role + ")", 
+                "Succès", 
+                JOptionPane.INFORMATION_MESSAGE);
+            
+            // Redirection selon le rôle
+            if (user.getRole().equals("admin")) {
+                System.out.println("Bienvenue Rougui");
+//                new AdminDashboard().setVisible(true);
+            } else {
+                System.out.println("Bienvenue Agriculteur");
+//                new AgriculteurDashboard().setVisible(true);
+            }
+            this.dispose();
+            
         } else {
-            JOptionPane.showMessageDialog(this, "Mot de passe incorrect", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                "Mot de passe incorrect", 
+                "Erreur", 
+                JOptionPane.ERROR_MESSAGE);
         }
     } catch (Exception ex) {
         Logger.getLogger(ConnexionForm.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(this, "Erreur technique", "Erreur", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, 
+            "Erreur technique", 
+            "Erreur", 
+            JOptionPane.ERROR_MESSAGE);
     }
-
     }//GEN-LAST:event_connexion_btnActionPerformed
 
     private void email_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_tfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_email_tfActionPerformed
+
+    private void annuler_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annuler_btnMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_annuler_btnMouseClicked
 
     /**
      * @param args the command line arguments

@@ -22,7 +22,8 @@ public class UtilisateurDao {
                 Utilisateur user = new Utilisateur(
                     rs.getInt("idUser"),
                     rs.getString("nom"),
-                    rs.getString("prenom"),
+                    rs.getString("prenom"), 
+                        
                     rs.getString("telephone"),
                     rs.getString("adresse"),
                     rs.getString("role"),

@@ -1,33 +1,20 @@
-package ui.Parcelle;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package ui.Culture;
 
-import java.util.*;
-import javax.swing.JOptionPane;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.SQLException;
-import dao.ParcelleDao;
-import models.Parcelle;
-import utils.UtilsFonction;
+/**
+ *
+ * @author MoRF9
+ */
+public class CultureTable extends javax.swing.JFrame {
 
-
-public class ParcelleTable extends javax.swing.JFrame {
-    
-    ParcelleDao parcelDao;
     /**
-     * Creates new form ParcelleTable
+     * Creates new form CultureTable
      */
-    public ParcelleTable() {
+    public CultureTable() {
         initComponents();
-        affichageParcelle();
-    }
-    
-    private void affichageParcelle(){
-        try{
-            List<Parcelle> allParcelle = parcelDao.getAllParcelles();
-            UtilsFonction.displayDataInTable(allParcelle, tableau, List.of("idParcelle", "idUserF"));
-        }catch(SQLException | ClassNotFoundException ex){
-            Logger.getLogger(ParcelleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -111,19 +98,27 @@ public class ParcelleTable extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel5.setText("Liste des Parcelles");
+        jLabel5.setText("Liste des Ressources");
 
         tableau.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Type", "Quantité", "Unité"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableau);
 
         modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
@@ -158,7 +153,7 @@ public class ParcelleTable extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(138, 138, 138))
+                                .addGap(129, 129, 129))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25))))
@@ -187,14 +182,6 @@ public class ParcelleTable extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modifier_btnActionPerformed
-
-    private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supprimer_btnActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -212,20 +199,20 @@ public class ParcelleTable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CultureTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CultureTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CultureTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CultureTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ParcelleTable().setVisible(true);
+                new CultureTable().setVisible(true);
             }
         });
     }

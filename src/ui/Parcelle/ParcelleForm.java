@@ -3,20 +3,97 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui.Parcelle;
+import models.Parcelle;
+import dao.ParcelleDao;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
 
 /**
  *
  * @author MoRF9
  */
 public class ParcelleForm extends javax.swing.JFrame {
-
+    ParcelleDao parcelDao;
+    
     /**
-     * Creates new form ParcelleForm
+     * Creates new form Parcelle
      */
     public ParcelleForm() {
         initComponents();
+        loadTypeSol();
+        parcelDao = new ParcelleDao();
     }
 
+//    fonction pour remplacer les items par defaut
+    private void loadTypeSol() {
+        typeSol_cbx.removeAllItems();
+        List<String> typeSol = List.of("L1", "L2", "L3", "M1", "M2");
+        for (String sol : typeSol) {
+            typeSol_cbx.addItem(sol);
+        }
+        typeSol_cbx.setSelectedIndex(-1);
+    }
+    
+//    fonction pour les contrôles de saisies
+
+    private boolean validerFields() {
+        String nomParcelle = nomparcelle_tf.getText().trim();
+        String superficie = superficieparcelle_tf.getText().trim();
+        String typeSol = typeSol_cbx.getSelectedIndex() == -1 ? "" : typeSol_cbx.getSelectedItem().toString();
+        String phSol = phSol_tf.getText().trim();
+        
+        List <String> champs = List.of(nomParcelle,superficie,typeSol,phSol);
+        
+        boolean testField = champs.stream().anyMatch(c -> c.isEmpty());
+        
+      
+        if(testField){
+            showMessageError("veuiller remplir tous les champs");
+            return false;
+        }
+       try {
+            Double superf = Double.valueOf(superficie);
+            if(superf<0.0){
+                showMessageError("veuiller saisir une superficie positive.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showMessageError("veuiller saisir un double pour la superficie");
+            return false;
+        } 
+        try {
+            Double ph = Double.valueOf(phSol);
+            if(ph<0.0 || ph>14.0){
+                showMessageError("veuiller saisir un ph compris entre et 0 et 14");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showMessageError("veuiller saisir un double pour le ph");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private void showMessageError(String message){
+       JOptionPane.showMessageDialog(this, message, "erreur" , JOptionPane.ERROR_MESSAGE);
+
+    }
+    
+//    pour vider les champs apres ajout parcelle
+    private void resetInput(){
+        nomparcelle_tf.setText("");
+        superficieparcelle_tf.setText("");
+        typeSol_cbx.setSelectedIndex(-1);
+        phSol_tf.setText("");
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +103,292 @@ public class ParcelleForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        senzela = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        nomparcelle_tf = new javax.swing.JTextField();
+        superficieparcelle_tf = new javax.swing.JTextField();
+        typeSol_cbx = new javax.swing.JComboBox<>();
+        annuler_btn = new javax.swing.JButton();
+        ajouter_btn = new javax.swing.JButton();
+        phSol_tf = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        senzela.setBackground(new java.awt.Color(0, 102, 0));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SenZelaGreen");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("avec");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Cultivez l'avenir ");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Intelligence");
+
+        javax.swing.GroupLayout senzelaLayout = new javax.swing.GroupLayout(senzela);
+        senzela.setLayout(senzelaLayout);
+        senzelaLayout.setHorizontalGroup(
+            senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(senzelaLayout.createSequentialGroup()
+                .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(senzelaLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(senzelaLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(senzelaLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel4)))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, senzelaLayout.createSequentialGroup()
+                    .addContainerGap(67, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(55, 55, 55)))
+        );
+        senzelaLayout.setVerticalGroup(
+            senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(senzelaLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel1)
+                .addGap(122, 122, 122)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(senzelaLayout.createSequentialGroup()
+                    .addGap(160, 160, 160)
+                    .addComponent(jLabel3)
+                    .addContainerGap(292, Short.MAX_VALUE)))
+        );
+
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel5.setText("Ajout Parcelle");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel6.setText("Nom Parcelle");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel7.setText("Superficie");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel8.setText("Type Sol");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 102, 0));
+        jLabel9.setText("Ph Sol");
+
+        nomparcelle_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomparcelle_tfActionPerformed(evt);
+            }
+        });
+
+        superficieparcelle_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                superficieparcelle_tfActionPerformed(evt);
+            }
+        });
+
+        typeSol_cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        typeSol_cbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeSol_cbxActionPerformed(evt);
+            }
+        });
+
+        annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
+        annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
+        annuler_btn.setText("Annuler");
+        annuler_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annuler_btnActionPerformed(evt);
+            }
+        });
+
+        ajouter_btn.setBackground(new java.awt.Color(0, 102, 0));
+        ajouter_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ajouter_btn.setForeground(new java.awt.Color(255, 255, 255));
+        ajouter_btn.setText("Ajouter");
+        ajouter_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajouter_btnActionPerformed(evt);
+            }
+        });
+
+        phSol_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phSol_tfActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ajouter_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                .addComponent(nomparcelle_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(superficieparcelle_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(phSol_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(typeSol_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(25, 25, 25))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomparcelle_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(superficieparcelle_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typeSol_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phSol_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ajouter_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(senzela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(senzela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nomparcelle_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomparcelle_tfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomparcelle_tfActionPerformed
+
+    private void superficieparcelle_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_superficieparcelle_tfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_superficieparcelle_tfActionPerformed
+
+    private void annuler_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annuler_btnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_annuler_btnActionPerformed
+
+    private void ajouter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouter_btnActionPerformed
+
+        try {
+            // TODO add your handling code here:
+            if(!validerFields()){
+                return;
+            }
+            String nomParcelle = nomparcelle_tf.getText().trim();
+            String superficie = superficieparcelle_tf.getText().trim();
+            String typeSol = typeSol_cbx.getSelectedIndex() == -1 ? "" : typeSol_cbx.getSelectedItem().toString();
+            String phSol = phSol_tf.getText().trim();
+            
+            Parcelle parcel = new Parcelle(Double.parseDouble(superficie), nomParcelle, Double.parseDouble(phSol), typeSol);
+            
+            boolean p = ParcelleDao.addParcelle(parcel);
+             
+            if(p){
+                JOptionPane.showMessageDialog(this, "Insertion reussie");
+                resetInput();
+            }else{
+                 JOptionPane.showMessageDialog(this, "Erreur lors de l insertion");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ParcelleForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ParcelleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ParcelleTable pTable = new ParcelleTable();
+        
+        pTable.setVisible(true);
+        
+        this.dispose();
+       
+    }//GEN-LAST:event_ajouter_btnActionPerformed
+
+    private void typeSol_cbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeSol_cbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeSol_cbxActionPerformed
+
+    private void phSol_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phSol_tfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phSol_tfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -68,6 +416,7 @@ public class ParcelleForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ParcelleForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -78,5 +427,22 @@ public class ParcelleForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ajouter_btn;
+    private javax.swing.JButton annuler_btn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField nomparcelle_tf;
+    private javax.swing.JTextField phSol_tf;
+    private javax.swing.JPanel senzela;
+    private javax.swing.JTextField superficieparcelle_tf;
+    private javax.swing.JComboBox<String> typeSol_cbx;
     // End of variables declaration//GEN-END:variables
 }

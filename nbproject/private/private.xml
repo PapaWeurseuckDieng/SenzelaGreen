@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Parcelle.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/ParcelleDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/DatabaseService.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/Parcelle/ParcelleTable.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/UtilisateurDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/utils/UtilsFonction.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Culture.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/Parcelle/ParcelleForm.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/CultureDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Produit.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/ProduitDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Ressource.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/RessourceDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Facture.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/FactureDao.java</file>
+        </group>
+    </open-files>
+</project-private>

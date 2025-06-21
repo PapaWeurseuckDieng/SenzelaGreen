@@ -76,10 +76,15 @@
                               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="adresse_tf1" alignment="1" pref="169" max="32767" attributes="0"/>
+<<<<<<< HEAD
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="email_tf" alignment="0" max="32767" attributes="0"/>
                                       <Component id="genre_cbx" alignment="0" pref="161" max="32767" attributes="0"/>
                                   </Group>
+=======
+                                  <Component id="email_tf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="genre_cbx" alignment="0" pref="169" max="32767" attributes="0"/>
+>>>>>>> Rougui
                                   <Component id="rolr_cbx" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -112,7 +117,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                           <Group type="102" attributes="0">
+=======
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+>>>>>>> Rougui
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -129,6 +143,7 @@
                                   <Component id="nom_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+<<<<<<< HEAD
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -136,10 +151,21 @@
                                       <Component id="genre_cbx" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
+=======
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                                      <Component id="genre_cbx" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+>>>>>>> Rougui
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="prenom_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+<<<<<<< HEAD
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -150,6 +176,13 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+=======
+                                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+>>>>>>> Rougui
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="telephone_tf" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -161,7 +194,11 @@
                           <Component id="mdp_tf" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace pref="87" max="32767" attributes="0"/>
+=======
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
+>>>>>>> Rougui
                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="226" max="-2" attributes="0"/>

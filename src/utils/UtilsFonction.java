@@ -14,8 +14,6 @@ public class UtilsFonction {
 
     private static final int PHONE_NUMBER_LENGTH = 9;
     private static final List<String> VALID_PREFIXES = Arrays.asList("77", "78", "76", "75", "72", "70");
-
-
     public static <T> void displayDataInTable(List<T> dataList, JTable jTable) {
         displayDataInTable(dataList, jTable, new ArrayList<>());
     }
@@ -156,3 +154,7 @@ public class UtilsFonction {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> Rougui

@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 
 public class Culture {
-    private long idCulture;
+    private String idCulture;
     private String nomCulture;
     private String description;
     private String typeCulture;
@@ -27,7 +27,7 @@ public class Culture {
         this.stade = stade;
     }
 
-    public Culture(long idCulture, String nomCulture, String description, String typeCulture, String cycleCulture, Date dateDebut, Date dateFin, Double rendementAttendu, String stade) {
+    public Culture(String idCulture, String nomCulture, String description, String typeCulture, String cycleCulture, Date dateDebut, Date dateFin, Double rendementAttendu, String stade) {
         this.idCulture = idCulture;
         this.nomCulture = nomCulture;
         this.description = description;
@@ -41,11 +41,11 @@ public class Culture {
     }
 
     // Getters et Setters
-    public long getIdCulture() {
+    public String getIdCulture() {
         return idCulture;
     }
 
-    public void setIdCulture(int idCulture) {
+    public void setIdCulture(String idCulture) {
         this.idCulture = idCulture;
     }
 

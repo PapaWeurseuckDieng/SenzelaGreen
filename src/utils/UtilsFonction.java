@@ -132,7 +132,7 @@ public class UtilsFonction {
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         return email.matches(regex);
     }
-    
+
     public static String encrypt(String str) {
         int code;
         StringBuilder result = new StringBuilder();
@@ -156,5 +156,3 @@ public class UtilsFonction {
     }
 
 }
-
-

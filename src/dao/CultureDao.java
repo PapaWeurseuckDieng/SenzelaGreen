@@ -15,14 +15,15 @@ public class CultureDao {
 
     private static Culture convertResultSetToCulture(ResultSet rs) throws SQLException {
         return new Culture(
-            rs.getLong("idCulture"),
+            String.valueOf(rs.getLong("idCulture")), // Conversion explicite
             rs.getString("nomCulture"),
             rs.getString("description"),
             rs.getString("typeCulture"),
             rs.getString("cycleCulture"),
             rs.getDate("dateDebut"),
             rs.getDate("dateFin"),
-            rs.getDouble("rendementAttendu")
+            rs.getDouble("rendementAttendu"),
+            null // le champ "stade" est manquant dans la requête et dans les paramètres
         );
     }
 

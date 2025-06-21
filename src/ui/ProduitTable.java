@@ -1,33 +1,20 @@
-package ui.Parcelle;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package ui;
 
-import java.util.*;
-import javax.swing.JOptionPane;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.SQLException;
-import dao.ParcelleDao;
-import models.Parcelle;
-import utils.UtilsFonction;
+/**
+ *
+ * @author MoRF9
+ */
+public class ProduitTable extends javax.swing.JFrame {
 
-
-public class ParcelleTable extends javax.swing.JFrame {
-    
-    ParcelleDao parcelDao;
     /**
-     * Creates new form ParcelleTable
+     * Creates new form ProduitTable
      */
-    public ParcelleTable() {
+    public ProduitTable() {
         initComponents();
-        affichageParcelle();
-    }
-    
-    private void affichageParcelle(){
-        try{
-            List<Parcelle> allParcelle = parcelDao.getAllParcelles();
-            UtilsFonction.displayDataInTable(allParcelle, tableau, List.of("idParcelle", "idUserF"));
-        }catch(SQLException | ClassNotFoundException ex){
-            Logger.getLogger(ParcelleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -111,7 +98,7 @@ public class ParcelleTable extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel5.setText("Liste des Parcelles");
+        jLabel5.setText("Liste des Produits");
 
         tableau.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,9 +108,17 @@ public class ParcelleTable extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nom Produit", "Description", "Stock", "Prix Unitaire"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableau);
 
         modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
@@ -163,9 +158,9 @@ public class ParcelleTable extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(68, 68, 68)
                         .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
+                        .addGap(107, 107, 107)
                         .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -212,20 +207,20 @@ public class ParcelleTable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ParcelleTable().setVisible(true);
+                new ProduitTable().setVisible(true);
             }
         });
     }

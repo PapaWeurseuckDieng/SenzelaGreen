@@ -50,19 +50,11 @@ public class UtilsFonction {
                     field.setAccessible(true);
                     Object fieldValue = field.get(item);
 
-//                    if (fieldValue instanceof Date) {
-//                        rowData[i] = dateFormat.format((Date) fieldValue);
-//                    } else {
-//                        rowData[i] = fieldValue;
-//                    }
-                    if("sexe".equalsIgnoreCase(field.getName()) && fieldValue instanceof Boolean){
-                            rowData[i] = ((Boolean) fieldValue) ? "Masculin" : "Feminin";
-
-                    }else if(fieldValue instanceof Date){
+                    if (fieldValue instanceof Date) {
                         rowData[i] = dateFormat.format((Date) fieldValue);
-                    }else{
-                            rowData[i] = fieldValue;
-                            }
+                    } else {
+                        rowData[i] = fieldValue;
+                    }
 
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -140,7 +132,6 @@ public class UtilsFonction {
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         return email.matches(regex);
     }
-
     
     public static String encrypt(String str) {
         int code;
@@ -163,4 +154,7 @@ public class UtilsFonction {
         }
         return result.toString();
     }
+
 }
+
+

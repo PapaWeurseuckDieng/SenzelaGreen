@@ -26,6 +26,7 @@ public class ParcelleDao {
     }
 
     public static List<Parcelle> getAllParcelles() throws SQLException, ClassNotFoundException {
+        
         List<Parcelle> parcelles = new ArrayList<>();
         ResultSet rs = DatabaseService.executeQuery(SQL_SELECT_ALL);
 
@@ -66,3 +67,5 @@ public class ParcelleDao {
         return row > 0;
     }
 }
+
+

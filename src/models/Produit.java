@@ -10,7 +10,7 @@ public class Produit {
     private long idCultureF;    // FK vers culture
     private String codeFactureF; // FK vers facture (VARCHAR)
 
-    // Constructeur vide
+    // Constructeur vide    
     public Produit() {}
 
     // Constructeur sans ID (pour insertion)

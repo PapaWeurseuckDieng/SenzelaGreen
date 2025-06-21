@@ -6,27 +6,27 @@ public class Parcelle {
     private String nomParcelle;
     private Double pHSol;
     private String typeSol;
-    private long idUserF;
+//    private long idUserF;
 
     // Constructeur sans ID
 
-    public Parcelle(Double superficie, String nomParcelle, Double pHSol, String typeSol, long idUserF) {
+    public Parcelle(Double superficie, String nomParcelle, Double pHSol, String typeSol) {
         this.superficie = superficie;
         this.nomParcelle = nomParcelle;
         this.pHSol = pHSol;
         this.typeSol = typeSol;
-        this.idUserF = idUserF;
+//        this.idUserF = idUserF;
     }
     
 
     // Constructeur avec ID
-    public Parcelle(int idParcelle, Double superficie, String nomParcelle, Double pHSol, String typeSol, long idUserF) {
+    public Parcelle(int idParcelle, Double superficie, String nomParcelle, Double pHSol, String typeSol) {
         this.idParcelle = idParcelle;
         this.superficie = superficie;
         this.nomParcelle = nomParcelle;
         this.pHSol = pHSol;
         this.typeSol = typeSol;
-        this.idUserF = idUserF;
+//        this.idUserF = idUserF;
     }  
 
     // Getters et Setters
@@ -78,11 +78,11 @@ public class Parcelle {
 //        this.idCultureF = idCultureF;
 //    }
 //
-    public long getIdUserF() {
-        return idUserF;
-    }
-
-    public void setIdUserF(long idUserF) {
-        this.idUserF = idUserF;
-    }
+//    public long getIdUserF() {
+//        return idUserF;
+//    }
+//
+//    public void setIdUserF(long idUserF) {
+//        this.idUserF = idUserF;
+//    }
 }

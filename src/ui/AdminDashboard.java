@@ -4,10 +4,7 @@
  */
 package ui;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> Rougui
 /**
  *
  * @author HP

@@ -154,7 +154,3 @@ public class UtilsFonction {
     }
 
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> Rougui

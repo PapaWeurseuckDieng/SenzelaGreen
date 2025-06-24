@@ -10,10 +10,10 @@ public class Utilisateur {
     private String genre;
     private String email;
     private String mdp;
+    private String idCulture;
     
     // Constructeur
-    public Utilisateur(int idUser, String nom, String prenom, String telephone, String adresse, 
-                      String role, String genre, String email, String mdp) {
+    public Utilisateur(int idUser, String nom, String prenom, String telephone, String adresse, String role, String genre, String email, String mdp, String idCulture) {
         this.idUser = idUser;
         this.nom = nom;
         this.prenom = prenom;
@@ -23,6 +23,7 @@ public class Utilisateur {
         this.genre = genre;
         this.email = email;
         this.mdp = mdp;
+        this.idCulture = idCulture;
     }
 
     public int getIdUser() {
@@ -95,6 +96,14 @@ public class Utilisateur {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+    
+    public String getIdCulture() {
+        return idCulture;
+    }
+    
+    public void setIdCulture(String idCulture) {
+        this.idCulture = idCulture;
     }
     
     

@@ -20,7 +20,8 @@ public class UtilisateurDao {
                 rs.getString("role"),
                 rs.getString("genre"),
                 rs.getString("email"),
-                rs.getString("mdp")
+                rs.getString("mdp"),
+                rs.getString("idCulture")
             );
         }
         return null;

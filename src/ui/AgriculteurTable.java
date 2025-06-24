@@ -1,33 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package ui;
 
-import java.util.*;
-import javax.swing.JOptionPane;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.SQLException;
-import dao.ParcelleDao;
-import models.Parcelle;
-import utils.UtilsFonction;
+import java.awt.event.ActionEvent;
 
+/**
+ *
+ * @author MoRF9
+ */
+public class AgriculteurTable extends javax.swing.JFrame {
 
-public class ParcelleTable extends javax.swing.JFrame {
-    
-    ParcelleDao parcelDao;
     /**
-     * Creates new form ParcelleTable
+     * Creates new form CultureTable
      */
-    public ParcelleTable() {
+    public AgriculteurTable() {
         initComponents();
-        affichageParcelle();
-    }
-    
-    private void affichageParcelle(){
-        try{
-            List<Parcelle> allParcelle = parcelDao.getAllParcelles();
-            UtilsFonction.displayDataInTable(allParcelle, tableau, List.of("idParcelle", "idUserF"));
-        }catch(SQLException | ClassNotFoundException ex){
-            Logger.getLogger(ParcelleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -48,7 +37,7 @@ public class ParcelleTable extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableau = new javax.swing.JTable();
         modifier_btn = new javax.swing.JButton();
-        supprimer_btn = new javax.swing.JButton();
+        annuler_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,66 +70,69 @@ public class ParcelleTable extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(senzelaLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel4))
-                    .addGroup(senzelaLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(122, 122, 122)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(senzelaLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel3)))
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel4)))
                 .addContainerGap(74, Short.MAX_VALUE))
+            .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, senzelaLayout.createSequentialGroup()
+                    .addContainerGap(67, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(55, 55, 55)))
         );
         senzelaLayout.setVerticalGroup(
             senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(senzelaLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(114, 114, 114)
-                .addComponent(jLabel3)
-                .addGap(32, 32, 32)
+                .addGap(122, 122, 122)
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(398, Short.MAX_VALUE))
+            .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(senzelaLayout.createSequentialGroup()
+                    .addGap(160, 160, 160)
+                    .addComponent(jLabel3)
+                    .addContainerGap(292, Short.MAX_VALUE)))
         );
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel5.setText("Liste des Parcelles");
+        jLabel5.setText("Liste des Cultures");
 
         tableau.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Superficie", "Nom Parcelle", "PH Sol", "Type Sol"
+                "ID", "Non", "Prenom", "Telephone", "Mot de passe", "Adresse", "Role", "Genre", "Email", "Culture"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableau);
 
         modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
         modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
         modifier_btn.setText("Modifier");
-        modifier_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifier_btnActionPerformed(evt);
-            }
-        });
 
-        supprimer_btn.setBackground(new java.awt.Color(0, 102, 0));
-        supprimer_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        supprimer_btn.setForeground(new java.awt.Color(255, 255, 255));
-        supprimer_btn.setText("Supprimer");
-        supprimer_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supprimer_btnActionPerformed(evt);
-            }
-        });
+        annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
+        annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
+        annuler_btn.setText("Supprimer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,48 +140,39 @@ public class ParcelleTable extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(senzela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addGap(343, 343, 343)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(313, 313, 313))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(196, 196, 196)
-                                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(272, 272, 272))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(modifier_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(annuler_btn)
+                        .addGap(256, 256, 256))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(senzela, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(132, 132, 132))
+                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(168, 168, 168))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modifier_btnActionPerformed
-
-    private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supprimer_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,25 +191,27 @@ public class ParcelleTable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgriculteurTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgriculteurTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgriculteurTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ParcelleTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgriculteurTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ParcelleTable().setVisible(true);
+                new AgriculteurTable().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton annuler_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -235,7 +220,6 @@ public class ParcelleTable extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton modifier_btn;
     private javax.swing.JPanel senzela;
-    private javax.swing.JButton supprimer_btn;
     private javax.swing.JTable tableau;
     // End of variables declaration//GEN-END:variables
 }

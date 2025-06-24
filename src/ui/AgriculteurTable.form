@@ -194,15 +194,17 @@
         <Component class="javax.swing.JTable" name="tableau">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="4">
-                <Column editable="true" title="Nom Culture" type="java.lang.String"/>
-                <Column editable="true" title="Description" type="java.lang.String"/>
-                <Column editable="true" title="Cycle Culture" type="java.lang.String"/>
-                <Column editable="true" title="Type Culture" type="java.lang.String"/>
-                <Column editable="true" title="Rendement" type="java.lang.Object"/>
-                <Column editable="true" title="Stade" type="java.lang.Object"/>
-                <Column editable="true" title="Date Debut" type="java.lang.Object"/>
-                <Column editable="true" title="Date Fin" type="java.lang.Object"/>
+              <Table columnCount="10" rowCount="4">
+                <Column editable="true" title="ID" type="java.lang.String"/>
+                <Column editable="true" title="Non" type="java.lang.String"/>
+                <Column editable="true" title="Prenom" type="java.lang.String"/>
+                <Column editable="true" title="Telephone" type="java.lang.String"/>
+                <Column editable="true" title="Mot de passe" type="java.lang.Object"/>
+                <Column editable="true" title="Adresse" type="java.lang.Object"/>
+                <Column editable="true" title="Role" type="java.lang.Object"/>
+                <Column editable="true" title="Genre" type="java.lang.Object"/>
+                <Column editable="true" title="Email" type="java.lang.Object"/>
+                <Column editable="true" title="Culture" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

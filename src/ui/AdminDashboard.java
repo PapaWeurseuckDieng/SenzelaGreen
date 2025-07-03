@@ -101,9 +101,11 @@ public class AdminDashboard extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
         private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {                                     
-        //new Agriculteurs().setVisible(true);
+        // Ouvrir la fenêtre Agriculteur et fermer le dashboard
+        new Agriculteur().setVisible(true);  // Assurez-vous que la classe s'appelle bien "Agriculteur"
         this.dispose();
-}                                    
+    }
+                                    
 
 private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {                                     
     new CultureTable().setVisible(true);
@@ -704,23 +706,21 @@ private void setupLogoutHover() {
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        new ParcelleTable().setVisible(true);
-        this.dispose();
-        
-       
+
+        new ConnexionForm().setVisible(true);
+        this.dispose();     
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
-        System.exit(0);
          new ConnexionForm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jPanel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+         new ConnexionForm().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_jPanel21MouseClicked
 private void setupHoverEffects() {
     // Liste des panels cliquables (les rectangles du menu)

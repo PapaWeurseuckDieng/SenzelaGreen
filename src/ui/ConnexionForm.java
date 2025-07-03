@@ -153,7 +153,7 @@ public class ConnexionForm extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -306,10 +306,10 @@ public class ConnexionForm extends javax.swing.JFrame {
             // Redirection selon le rôle
             if (user.getRole().equals("admin")) {
                 System.out.println("Bienvenue Rougui");
-//                new AdminDashboard().setVisible(true);
+               new AdminDashboard().setVisible(true);
             } else {
                 System.out.println("Bienvenue Agriculteur");
-//                new AgriculteurDashboard().setVisible(true);
+                new AgriculteurDashboard().setVisible(true);
             }
             this.dispose();
             

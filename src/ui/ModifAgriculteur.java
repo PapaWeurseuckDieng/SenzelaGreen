@@ -14,12 +14,12 @@ import models.Utilisateur;
  *
  * @author HP
  */
-public class Agriculteur extends javax.swing.JFrame {
+public class ModifAgriculteur extends javax.swing.JFrame {
 
     /**
      * Creates new form Agriculteur
      */
-    public Agriculteur() {
+    public ModifAgriculteur() {
         initComponents();
         setLocationRelativeTo(null); 
         initComboBoxes();
@@ -33,7 +33,7 @@ public class Agriculteur extends javax.swing.JFrame {
     
     private void setupButtonActions() {
         // Bouton Ajouter
-        ajouter_btn1.addActionListener(e -> ajouterAgriculteur());
+        modifier_btn.addActionListener(e -> ajouterAgriculteur());
         
         // Bouton Annuler
         annuler_btn.addActionListener(e -> {
@@ -129,7 +129,7 @@ public class Agriculteur extends javax.swing.JFrame {
         genre_cbx = new javax.swing.JComboBox<>();
         email_cbx = new javax.swing.JTextField();
         culture_tf = new javax.swing.JTextField();
-        ajouter_btn1 = new javax.swing.JButton();
+        modifier_btn = new javax.swing.JButton();
         annuler_btn = new javax.swing.JButton();
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -297,13 +297,13 @@ public class Agriculteur extends javax.swing.JFrame {
             }
         });
 
-        ajouter_btn1.setBackground(new java.awt.Color(0, 102, 0));
-        ajouter_btn1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ajouter_btn1.setForeground(new java.awt.Color(255, 255, 255));
-        ajouter_btn1.setText("Ajouter");
-        ajouter_btn1.addActionListener(new java.awt.event.ActionListener() {
+        modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
+        modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
+        modifier_btn.setText("Modifier");
+        modifier_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajouter_btn1ActionPerformed(evt);
+                modifier_btnActionPerformed(evt);
             }
         });
 
@@ -349,7 +349,7 @@ public class Agriculteur extends javax.swing.JFrame {
                                     .addComponent(mdp_pf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nom_tf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(ajouter_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,7 +418,7 @@ public class Agriculteur extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ajouter_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -459,10 +459,10 @@ public class Agriculteur extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_annuler_btnActionPerformed
 
-    private void ajouter_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouter_btn1ActionPerformed
+    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
         // TODO add your handling code here:
         ajouterAgriculteur();
-    }//GEN-LAST:event_ajouter_btn1ActionPerformed
+    }//GEN-LAST:event_modifier_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,20 +481,21 @@ public class Agriculteur extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifAgriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifAgriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifAgriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifAgriculteur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agriculteur().setVisible(true);
+                new ModifAgriculteur().setVisible(true);
             }
         });
     }
@@ -502,7 +503,6 @@ public class Agriculteur extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adresse_tf;
     private javax.swing.JButton ajouter_btn;
-    private javax.swing.JButton ajouter_btn1;
     private javax.swing.JButton annuler_btn;
     private javax.swing.JTextField culture_tf;
     private javax.swing.JTextField email_cbx;
@@ -525,6 +525,7 @@ public class Agriculteur extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField mdp_pf;
+    private javax.swing.JButton modifier_btn;
     private javax.swing.JTextField nom_tf;
     private javax.swing.JTextField prenom_tf;
     private javax.swing.JComboBox<String> role_cbx;

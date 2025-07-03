@@ -64,4 +64,6 @@ public class RessourceDao {
         int row = DatabaseService.executeUpdate(SQL_DELETE, idRessource);
         return row > 0;
     }
+    
+    
 }

@@ -56,4 +56,8 @@ public class Ressource {
     public void setUnite(String unite) {
         this.unite = unite;
     }
+
+    public void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

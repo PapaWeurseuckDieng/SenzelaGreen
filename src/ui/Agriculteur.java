@@ -44,7 +44,6 @@ public class Agriculteur extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        id_tf = new javax.swing.JTextField();
         nom_tf = new javax.swing.JTextField();
         prenom_tf = new javax.swing.JTextField();
         telephone_tf = new javax.swing.JTextField();
@@ -124,7 +123,6 @@ public class Agriculteur extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(0, 102, 0));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel6.setText("Id");
 
         jLabel7.setBackground(new java.awt.Color(0, 102, 0));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -175,12 +173,6 @@ public class Agriculteur extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 102, 0));
         jLabel16.setText("Culture");
-
-        id_tf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_tfActionPerformed(evt);
-            }
-        });
 
         nom_tf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,13 +249,8 @@ public class Agriculteur extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel11))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(42, 42, 42)
-                                        .addComponent(telephone_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(id_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(42, 42, 42)
+                                .addComponent(telephone_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(prenom_tf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +301,6 @@ public class Agriculteur extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel12)
-                    .addComponent(id_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adresse_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -349,10 +335,6 @@ public class Agriculteur extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void id_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_tfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_tfActionPerformed
 
     private void nom_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_tfActionPerformed
         // TODO add your handling code here:
@@ -429,7 +411,6 @@ public class Agriculteur extends javax.swing.JFrame {
     private javax.swing.JTextField culture_tf;
     private javax.swing.JTextField email_cbx;
     private javax.swing.JComboBox<String> genre_cbx;
-    private javax.swing.JTextField id_tf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

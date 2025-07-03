@@ -1,24 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ui;
 
+import dao.CultureDao;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.Culture;
+import utils.UtilsFonction;
+
 
 /**
  *
  * @author MoRF9
  */
 public class CultureTable extends javax.swing.JFrame {
+        CultureDao culturDao;
 
     /**
      * Creates new form CultureTable
      */
     public CultureTable() {
-        initComponents();
+            try {
+                initComponents();
+                affichageCulture();
+            } catch (SQLException ex) {
+                Logger.getLogger(CultureTable.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 
+        private void affichageCulture() throws SQLException{
+        try{
+            List<Culture> allCulture = CultureDao.getAllCultures();
+            UtilsFonction.displayDataInTable(allCulture, tableauCulture);
+        }catch(ClassNotFoundException ex){
+            Logger.getLogger(CultureTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,8 +56,7 @@ public class CultureTable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableau = new javax.swing.JTable();
-        modifier_btn = new javax.swing.JButton();
+        tableauCulture = new javax.swing.JTable();
         annuler_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,7 +123,7 @@ public class CultureTable extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
         jLabel5.setText("Liste des Cultures");
 
-        tableau.setModel(new javax.swing.table.DefaultTableModel(
+        tableauCulture.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -122,17 +142,12 @@ public class CultureTable extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableau);
-
-        modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
-        modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
-        modifier_btn.setText("Modifier");
+        jScrollPane1.setViewportView(tableauCulture);
 
         annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
         annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
-        annuler_btn.setText("Supprimer");
+        annuler_btn.setText("Retour en arriere");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,20 +156,19 @@ public class CultureTable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(senzela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(modifier_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(annuler_btn)
-                        .addGap(256, 256, 256))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(343, 343, 343)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(324, 324, 324)
+                                .addComponent(annuler_btn)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,11 +178,9 @@ public class CultureTable extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(168, 168, 168))
+                .addGap(118, 118, 118)
+                .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,8 +229,7 @@ public class CultureTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modifier_btn;
     private javax.swing.JPanel senzela;
-    private javax.swing.JTable tableau;
+    private javax.swing.JTable tableauCulture;
     // End of variables declaration//GEN-END:variables
 }

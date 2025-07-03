@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 
 public class Culture {
-    private String idCulture;
+    private long idCulture;
     private String nomCulture;
     private String description;
     private String typeCulture;
@@ -11,12 +11,11 @@ public class Culture {
     private Date dateDebut;
     private Date dateFin;
     private Double rendementAttendu;
-    private String stade;
 
     // Constructeurs
     public Culture() {}
 
-    public Culture(String nomCulture, String description, String typeCulture, String cycleCulture, Date dateDebut, Date dateFin, Double rendementAttendu, String stade) {
+    public Culture(String nomCulture, String description, String typeCulture, String cycleCulture, Date dateDebut, Date dateFin, Double rendementAttendu) {
         this.nomCulture = nomCulture;
         this.description = description;
         this.typeCulture = typeCulture;
@@ -24,10 +23,9 @@ public class Culture {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.rendementAttendu = rendementAttendu;
-        this.stade = stade;
     }
 
-    public Culture(String idCulture, String nomCulture, String description, String typeCulture, String cycleCulture, Date dateDebut, Date dateFin, Double rendementAttendu, String stade) {
+    public Culture(long idCulture, String nomCulture, String description, String typeCulture, String cycleCulture, Date dateDebut, Date dateFin, Double rendementAttendu) {
         this.idCulture = idCulture;
         this.nomCulture = nomCulture;
         this.description = description;
@@ -36,16 +34,15 @@ public class Culture {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.rendementAttendu = rendementAttendu;
-        this.stade = stade;
        
     }
 
     // Getters et Setters
-    public String getIdCulture() {
+    public long getIdCulture() {
         return idCulture;
     }
 
-    public void setIdCulture(String idCulture) {
+    public void setIdCulture(long idCulture) {
         this.idCulture = idCulture;
     }
 
@@ -105,13 +102,7 @@ public class Culture {
         this.rendementAttendu = rendementAttendu;
     }
 
-    public String getStade() {
-        return stade;
-    }
-
-    public void setStade(String stade) {
-        this.stade = stade;
-    }
+ 
     
     
 }

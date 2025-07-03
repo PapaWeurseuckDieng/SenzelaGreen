@@ -3,20 +3,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+import java.util.*;
+import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.SQLException;
+import dao.RessourceDao;
+import models.Ressource;
+import utils.UtilsFonction;
+
 
 /**
  *
  * @author MoRF9
  */
 public class RessourceTable extends javax.swing.JFrame {
+       RessourceDao ressourceDao;
 
     /**
      * Creates new form RessourceTable
      */
     public RessourceTable() {
         initComponents();
+        affichageRessource();
     }
 
+    private void affichageRessource() {
+        try {
+            List<Ressource> allRessources = ressourceDao.getAllRessources();
+            // Si vous ajoutez un tableau, utilisez:
+             UtilsFonction.displayDataInTable(allRessources, tableauRessource, List.of("idRessource"));
+        } catch(SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(RessourceTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,8 +53,7 @@ public class RessourceTable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableau = new javax.swing.JTable();
-        modifier_btn = new javax.swing.JButton();
+        tableauRessource = new javax.swing.JTable();
         supprimer_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,7 +119,7 @@ public class RessourceTable extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
         jLabel5.setText("Liste des Ressources");
 
-        tableau.setModel(new javax.swing.table.DefaultTableModel(
+        tableauRessource.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -119,22 +138,12 @@ public class RessourceTable extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableau);
-
-        modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
-        modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
-        modifier_btn.setText("Modifier");
-        modifier_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifier_btnActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tableauRessource);
 
         supprimer_btn.setBackground(new java.awt.Color(0, 102, 0));
         supprimer_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         supprimer_btn.setForeground(new java.awt.Color(255, 255, 255));
-        supprimer_btn.setText("Supprimer");
+        supprimer_btn.setText("Retour en arriere");
         supprimer_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supprimer_btnActionPerformed(evt);
@@ -152,15 +161,15 @@ public class RessourceTable extends javax.swing.JFrame {
                         .addGap(324, 324, 324)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(246, 246, 246))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(107, 107, 107))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(363, 363, 363))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,21 +177,15 @@ public class RessourceTable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 170, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modifier_btnActionPerformed
 
     private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
         // TODO add your handling code here:
@@ -230,9 +233,8 @@ public class RessourceTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modifier_btn;
     private javax.swing.JPanel senzela;
     private javax.swing.JButton supprimer_btn;
-    private javax.swing.JTable tableau;
+    private javax.swing.JTable tableauRessource;
     // End of variables declaration//GEN-END:variables
 }

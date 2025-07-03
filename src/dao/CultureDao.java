@@ -15,15 +15,14 @@ public class CultureDao {
 
     private static Culture convertResultSetToCulture(ResultSet rs) throws SQLException {
         return new Culture(
-            String.valueOf(rs.getLong("idCulture")), // Conversion explicite
+            rs.getLong("idCulture"), // Conversion explicite
             rs.getString("nomCulture"),
             rs.getString("description"),
             rs.getString("typeCulture"),
             rs.getString("cycleCulture"),
             rs.getDate("dateDebut"),
             rs.getDate("dateFin"),
-            rs.getDouble("rendementAttendu"),
-            null // le champ "stade" est manquant dans la requête et dans les paramètres
+            rs.getDouble("rendementAttendu")
         );
     }
 
@@ -67,7 +66,7 @@ public class CultureDao {
         return row > 0;
     }
 
-    public static boolean deleteCulture(int idCulture) throws SQLException, ClassNotFoundException {
+    public static boolean deleteCulture(long idCulture) throws SQLException, ClassNotFoundException {
         int row = DatabaseService.executeUpdate(SQL_DELETE, idCulture);
         return row > 0;
     }

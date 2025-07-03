@@ -6,7 +6,9 @@ public class Parcelle {
     private String nomParcelle;
     private Double pHSol;
     private String typeSol;
-//    private long idUserF;
+
+    public Parcelle() {
+    }
 
     // Constructeur sans ID
 
@@ -20,7 +22,7 @@ public class Parcelle {
     
 
     // Constructeur avec ID
-    public Parcelle(int idParcelle, Double superficie, String nomParcelle, Double pHSol, String typeSol) {
+    public Parcelle(long idParcelle, Double superficie, String nomParcelle, Double pHSol, String typeSol) {
         this.idParcelle = idParcelle;
         this.superficie = superficie;
         this.nomParcelle = nomParcelle;
@@ -70,19 +72,4 @@ public class Parcelle {
         this.typeSol = typeSol;
     }
 
-//    public int getIdCultureF() {
-//        return idCultureF;
-//    }
-//
-//    public void setIdCultureF(int idCultureF) {
-//        this.idCultureF = idCultureF;
-//    }
-//
-//    public long getIdUserF() {
-//        return idUserF;
-//    }
-//
-//    public void setIdUserF(long idUserF) {
-//        this.idUserF = idUserF;
-//    }
 }

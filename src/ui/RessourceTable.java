@@ -54,7 +54,7 @@ public class RessourceTable extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableauRessource = new javax.swing.JTable();
-        supprimer_btn = new javax.swing.JButton();
+        annuler_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,13 +140,13 @@ public class RessourceTable extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableauRessource);
 
-        supprimer_btn.setBackground(new java.awt.Color(0, 102, 0));
-        supprimer_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        supprimer_btn.setForeground(new java.awt.Color(255, 255, 255));
-        supprimer_btn.setText("Retour en arriere");
-        supprimer_btn.addActionListener(new java.awt.event.ActionListener() {
+        annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
+        annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
+        annuler_btn.setText("Retour en arriere");
+        annuler_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supprimer_btnActionPerformed(evt);
+                annuler_btnActionPerformed(evt);
             }
         });
 
@@ -168,7 +168,7 @@ public class RessourceTable extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(107, 107, 107))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(363, 363, 363))))))
         );
         layout.setVerticalGroup(
@@ -180,16 +180,18 @@ public class RessourceTable extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
-                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
+    private void annuler_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annuler_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_supprimer_btnActionPerformed
+        new AdminDashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_annuler_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,6 +229,7 @@ public class RessourceTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton annuler_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -234,7 +237,6 @@ public class RessourceTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel senzela;
-    private javax.swing.JButton supprimer_btn;
     private javax.swing.JTable tableauRessource;
     // End of variables declaration//GEN-END:variables
 }

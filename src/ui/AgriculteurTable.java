@@ -1,102 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ui;
 
 import dao.UtilisateurDao;
 import models.Utilisateur;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ui.AdminDashboard;
+import ui.Agriculteur;
+import utils.UtilsFonction;
 
 public class AgriculteurTable extends javax.swing.JFrame {
+    private UtilisateurDao utilisateurDao;
 
     public AgriculteurTable() {
         initComponents();
         setLocationRelativeTo(null); // Centrer la fenêtre
-        chargerDonnees();
-        setupButtonActions();
+        affichageAgriculteurs();
     }
 
-    private void chargerDonnees() {
-        try {
-            DefaultTableModel model = (DefaultTableModel) tableau.getModel();
-            model.setRowCount(0); // Vider le tableau
-            
-            List<Utilisateur> agriculteurs = UtilisateurDao.getAgriculteurs();
-            for (Utilisateur agriculteur : agriculteurs) {
-                model.addRow(new Object[]{
-                    agriculteur.getIdUser(),
-                    agriculteur.getNom(),
-                    agriculteur.getPrenom(),
-                    agriculteur.getTelephone(),
-                    "********", // Masquer le mot de passe
-                    agriculteur.getAdresse(),
-                    agriculteur.getRole(),
-                    agriculteur.getGenre(),
-                    agriculteur.getEmail(),
-                    agriculteur.getIdCulture()
-                });
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "Erreur lors du chargement des données: " + ex.getMessage());
-            ex.printStackTrace();
-        }
+        private void affichageAgriculteurs() {
+      try {
+          List<Utilisateur> allAgriculteurs = utilisateurDao.getAgriculteurs();
+          // Supposons que vous avez un tableau appelé tableauAgriculteurs
+          UtilsFonction.displayDataInTable(allAgriculteurs, tableauAgriculteur, 
+              List.of("idUser", "mdp","idCulture")); // Exclure les champs sensibles
+      } catch(SQLException | ClassNotFoundException ex) {
+          Logger.getLogger(Agriculteur.class.getName()).log(Level.SEVERE, null, ex);
+          showMessageError("Erreur lors du chargement des agriculteurs");
+    }
     }
     
-    
-    private void setupButtonActions() {
-        modifier_btn.addActionListener(e -> {
-            int selectedRow = tableau.getSelectedRow();
-            if (selectedRow >= 0) {
-                int id = (int) tableau.getValueAt(selectedRow, 0);
-                modifierAgriculteur(id);
-            } else {
-                JOptionPane.showMessageDialog(this, "Veuillez sélectionner un agriculteur à modifier");
-            }
-        });
-        
-        annuler_btn.addActionListener(e -> {
-            int selectedRow = tableau.getSelectedRow();
-            if (selectedRow >= 0) {
-                int id = (int) tableau.getValueAt(selectedRow, 0);
-                try {
-                    supprimerAgriculteur(id);
-                } catch (SQLException ex) {
-                    Logger.getLogger(AgriculteurTable.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(AgriculteurTable.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Veuillez sélectionner un agriculteur à supprimer");
-            }
-        });
-    }
 
-    private void modifierAgriculteur(int id) {
-        // À implémenter selon vos besoins
-        JOptionPane.showMessageDialog(this, "Fonctionnalité de modification pour l'ID: " + id);
-    }
+   
 
-    private void supprimerAgriculteur(int id) throws SQLException, ClassNotFoundException {
-        int confirm = JOptionPane.showConfirmDialog(
-                this, 
-                "Êtes-vous sûr de vouloir supprimer cet agriculteur ?",
-                "Confirmation de suppression",
-                JOptionPane.YES_NO_OPTION
-        );
-        if (confirm == JOptionPane.YES_OPTION) {
-            if (UtilisateurDao.supprimerAgriculteur(id)) {
-                JOptionPane.showMessageDialog(this, "Agriculteur supprimé avec succès");
-                chargerDonnees(); // Rafraîchir la table
-            } else {
-                JOptionPane.showMessageDialog(this, "Erreur lors de la suppression");
-            }
-        }
+   
     }
 
     @SuppressWarnings("unchecked")
@@ -110,9 +50,8 @@ public class AgriculteurTable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableau = new javax.swing.JTable();
-        modifier_btn = new javax.swing.JButton();
-        annuler_btn = new javax.swing.JButton();
+        tableauAgriculteur = new javax.swing.JTable();
+        retour_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,38 +117,36 @@ public class AgriculteurTable extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
         jLabel5.setText("Liste des Agriculteurs");
 
-        tableau.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {},
+        tableauAgriculteur.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
             new String [] {
-                "ID", "Nom", "Prenom", "Telephone", "Mot de passe", "Adresse", "Role", "Genre", "Email", "Culture"
+                "Nom", "Prenom", "Telephone", "Adresse", "Role", "Genre", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+        });
+        jScrollPane1.setViewportView(tableauAgriculteur);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        retour_btn.setBackground(new java.awt.Color(0, 102, 0));
+        retour_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        retour_btn.setForeground(new java.awt.Color(255, 255, 255));
+        retour_btn.setText("Retour en arriere");
+        retour_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour_btnActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(tableau);
-
-        modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
-        modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
-        modifier_btn.setText("Modifier");
-
-        annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
-        annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
-        annuler_btn.setText("Supprimer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,18 +156,17 @@ public class AgriculteurTable extends javax.swing.JFrame {
                 .addComponent(senzela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(104, 104, 104))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(modifier_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(annuler_btn)
-                        .addGap(256, 256, 256))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
-                        .addComponent(jLabel5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(343, 343, 343)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(352, 352, 352)
+                                .addComponent(retour_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -240,16 +176,20 @@ public class AgriculteurTable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(168, 168, 168))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addComponent(retour_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void retour_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour_btnActionPerformed
+        // TODO add your handling code here:
+        new AdminDashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_retour_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,15 +227,14 @@ public class AgriculteurTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton annuler_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modifier_btn;
+    private javax.swing.JButton retour_btn;
     private javax.swing.JPanel senzela;
-    private javax.swing.JTable tableau;
+    private javax.swing.JTable tableauAgriculteur;
     // End of variables declaration//GEN-END:variables
 }

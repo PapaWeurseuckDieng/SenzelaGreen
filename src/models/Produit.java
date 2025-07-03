@@ -25,15 +25,15 @@ public class Produit {
     }
 
     // Constructeur complet avec ID
-    public Produit(long idProduit, String nomProduit, String description, double stock, double prixUnitaire, long idUserF, long idCultureF, String codeFactureF) {
+    public Produit(long idProduit, String nomProduit, String description, double stock, double prixUnitaire) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.description = description;
         this.stock = stock;
         this.prixUnitaire = prixUnitaire;
-        this.idUserF = idUserF;
-        this.idCultureF = idCultureF;
-        this.codeFactureF = codeFactureF;
+//        this.idUserF = idUserF;
+//        this.idCultureF = idCultureF;
+//        this.codeFactureF = codeFactureF;
     }
     
 

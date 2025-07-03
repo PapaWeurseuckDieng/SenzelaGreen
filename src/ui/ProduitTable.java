@@ -30,7 +30,7 @@ public class ProduitTable extends javax.swing.JFrame {
       private void affichageProduit() {
         try {
             List<Produit> allProduits = produitDao.getAllProduits();
-            UtilsFonction.displayDataInTable(allProduits, tableau, List.of("idProduit"));
+            UtilsFonction.displayDataInTable(allProduits, tableau, List.of("idProduit", "idUserF","codeFactureF", "idCultureF" ));
         } catch(SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ProduitTable.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -180,6 +180,8 @@ public class ProduitTable extends javax.swing.JFrame {
 
     private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
         // TODO add your handling code here:
+        new AdminDashboard().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_supprimer_btnActionPerformed
 
     /**

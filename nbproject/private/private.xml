@@ -3,17 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/ConnexionForm.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/RessourceForm.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/Agriculteur.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/dao/UtilisateurDao.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/AgriculteurDashboard.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/hello.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/AgriculteurTable.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/ui/AdminDashboard.java</file>
-            <file>file:/C:/Users/HP/Documents/NetBeansProjects/SenzelaGreen/src/models/Utilisateur.java</file>
-=======
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Parcelle.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/ParcelleDao.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/DatabaseService.java</file>
@@ -27,20 +16,25 @@
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/FactureTable.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/utils/UtilsFonction.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/ProduitDao.java</file>
-            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/Client.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/AgriculteurDashboard.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/AgriculteurTable.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/ConnexionForm.java</file>
-            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Client.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Culture.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Utilisateur.java</file>
-            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/ClientDao.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/ParcelleForm.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/ParcelleTable.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/CultureDao.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/CultureTable.java</file>
             <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/CultureForm.java</file>
->>>>>>> 4f88ee588897f1c319e6d029997c39bb9626570e
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/RessourceForm.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/models/Produit.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/FactureDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/UtilisateurDao.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/ClientTable.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/ProduitTable.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/RessourceTable.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/ui/ClientForm.java</file>
+            <file>file:/C:/Users/MoRF9/Documents/NetBeansProjects/SenzelaGreen/src/dao/ClientDao.java</file>
         </group>
     </open-files>
 </project-private>

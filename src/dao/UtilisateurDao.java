@@ -14,7 +14,7 @@ public class UtilisateurDao {
         
         if (rs.next()) {
             return new Utilisateur(
-                rs.getInt("idUser"),
+                rs.getLong("idUser"),
                 rs.getString("nom"),
                 rs.getString("prenom"),
                 rs.getString("telephone"),
@@ -22,8 +22,7 @@ public class UtilisateurDao {
                 rs.getString("role"),
                 rs.getString("genre"),
                 rs.getString("email"),
-                rs.getString("mdp"),
-                rs.getString("idCulture")
+                rs.getString("mdp")
             );
         }
         return null;
@@ -72,8 +71,7 @@ public class UtilisateurDao {
                 rs.getString("role"),
                 rs.getString("genre"),
                 rs.getString("email"),
-                rs.getString("mdp"),
-                rs.getString("idCulture")
+                rs.getString("mdp")
             ));
         }
         
@@ -98,6 +96,25 @@ public class UtilisateurDao {
         // Réactiver les contraintes
         DatabaseService.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
     }
+}
+
+   // Dans UtilisateurDao.java
+public static boolean updateUtilisateur(Utilisateur u) throws SQLException, ClassNotFoundException {
+    // Implémentation qui peut lancer ces exceptions
+    String sql = "UPDATE users SET nom=?, prenom=?, telephone=?, adresse=?, "
+               + "role=?, genre=?, email=?, mdp=? WHERE idUSer=?";
+    
+    return DatabaseService.executeUpdate(sql, 
+        u.getNom(),
+        u.getPrenom(),
+        u.getTelephone(),
+        u.getAdresse(),
+        u.getRole(),
+        u.getGenre(),
+        u.getEmail(),
+        u.getMdp(),
+        u.getIdUser()
+    ) > 0;
 }
     
 

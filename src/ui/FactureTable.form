@@ -176,7 +176,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tableau">
+        <Component class="javax.swing.JTable" name="tableauFacture">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="4">
@@ -234,6 +234,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Retour en arriere"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="annuler_btnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

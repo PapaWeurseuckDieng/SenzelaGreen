@@ -57,7 +57,7 @@ public class CultureTable extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableauCulture = new javax.swing.JTable();
-        annuler_btn = new javax.swing.JButton();
+        retour_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,10 +144,15 @@ public class CultureTable extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableauCulture);
 
-        annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
-        annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
-        annuler_btn.setText("Retour en arriere");
+        retour_btn.setBackground(new java.awt.Color(0, 102, 0));
+        retour_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        retour_btn.setForeground(new java.awt.Color(255, 255, 255));
+        retour_btn.setText("Retour en arriere");
+        retour_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retour_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,7 +171,7 @@ public class CultureTable extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(324, 324, 324)
-                                .addComponent(annuler_btn)))
+                                .addComponent(retour_btn)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -179,12 +184,18 @@ public class CultureTable extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(118, 118, 118)
-                .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(retour_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void retour_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour_btnActionPerformed
+        // TODO add your handling code here:
+        new AdminDashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_retour_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,13 +233,13 @@ public class CultureTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton annuler_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton retour_btn;
     private javax.swing.JPanel senzela;
     private javax.swing.JTable tableauCulture;
     // End of variables declaration//GEN-END:variables

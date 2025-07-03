@@ -4,19 +4,34 @@
  */
 package ui;
 
+import dao.FactureDao;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.Facture;
+import utils.UtilsFonction;
 
-/**
- *
- * @author MoRF9
- */
+
 public class FactureTable extends javax.swing.JFrame {
+    private FactureDao factureDao;
 
     /**
      * Creates new form CultureTable
      */
     public FactureTable() {
         initComponents();
+        affichageFacture();
+    }
+    
+    private void affichageFacture() {
+        try {
+            List<Facture> allFactures = factureDao.getAllFactures();
+            UtilsFonction.displayDataInTable(allFactures, tableauFacture, List.of("idFacture", "idClientF"));
+        } catch(SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(FactureForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -35,7 +50,7 @@ public class FactureTable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableau = new javax.swing.JTable();
+        tableauFacture = new javax.swing.JTable();
         annuler_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,7 +112,7 @@ public class FactureTable extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
         jLabel5.setText("Liste des Ventes");
 
-        tableau.setModel(new javax.swing.table.DefaultTableModel(
+        tableauFacture.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -116,12 +131,17 @@ public class FactureTable extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableau);
+        jScrollPane1.setViewportView(tableauFacture);
 
         annuler_btn.setBackground(new java.awt.Color(0, 102, 0));
         annuler_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         annuler_btn.setForeground(new java.awt.Color(255, 255, 255));
         annuler_btn.setText("Retour en arriere");
+        annuler_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annuler_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +176,12 @@ public class FactureTable extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void annuler_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annuler_btnActionPerformed
+        // TODO add your handling code here:
+        new AdminDashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_annuler_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +228,6 @@ public class FactureTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel senzela;
-    private javax.swing.JTable tableau;
+    private javax.swing.JTable tableauFacture;
     // End of variables declaration//GEN-END:variables
 }

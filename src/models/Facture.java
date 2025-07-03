@@ -30,6 +30,16 @@ public class Facture {
         this.modePaiement = modePaiement;
         this.idClientF = idClientF;
     }
+
+    public Facture(long idFacture, String nomProduit, double quantite, double montantTotal, String modePaiement, long idClientF, String nomClient) {
+        this.idFacture = idFacture;
+        this.nomProduit = nomProduit;
+        this.quantite = quantite;
+        this.montantTotal = montantTotal;
+        this.modePaiement = modePaiement;
+        this.idClientF = idClientF;
+        this.nomClient = nomClient;
+    }
     
     
 

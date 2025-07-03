@@ -3,7 +3,9 @@ package ui;
 import dao.FactureDao;
 import models.Facture;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,20 +33,41 @@ public class FactureForm extends javax.swing.JFrame {
         loadModePaiement();
     }
 
+
+// Déclarez la Map comme variable d'instance de la classe
+    private Map<String, String> clientIdMap = new HashMap<>();
+
     private void loadClients() {
         try {
+            // Réinitialiser la ComboBox et la Map
             client_cbx.removeAllItems();
+            clientIdMap.clear();
+
+            // Récupérer la liste des clients depuis le DAO
             List<String[]> clients = FactureDao.getClientsForComboBox();
+
+            // Remplir la ComboBox et la Map
             for (String[] client : clients) {
-                client_cbx.addItem(client[1]); // Afficher le nom complet
-                client_cbx.setClientProperty(client[1], client[0]); // Stocker l'ID comme propriété
+                String nomComplet = client[1];  // Le nom complet à afficher
+                String idClient = client[0];    // L'ID à stocker
+
+                client_cbx.addItem(nomComplet); // Ajouter à la ComboBox
+                clientIdMap.put(nomComplet, idClient); // Stocker l'association dans la Map
             }
+
+            // Aucune sélection par défaut
             client_cbx.setSelectedIndex(-1);
+
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(FactureForm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FactureForm.class.getName()).log(Level.SEVERE, "Erreur de chargement des clients", ex);
+            JOptionPane.showMessageDialog(this, 
+                "Erreur de chargement de la liste des clients", 
+                "Erreur", 
+                JOptionPane.ERROR_MESSAGE);
         }
     }
     
+   
     private void loadModePaiement() {
         modePaiement_cbx.removeAllItems();
         List<String> modePaiement = List.of("Espèce", "Wave", "Orange Money", "Carte Bancaire");
@@ -99,7 +122,7 @@ public class FactureForm extends javax.swing.JFrame {
         montant_tf.setText("");
         modePaiement_cbx.setSelectedIndex(-1);
         client_cbx.setSelectedIndex(-1);
-        f = null;
+//        f = null;
     }
     
     private void getFormulaire() {
@@ -115,7 +138,12 @@ public class FactureForm extends javax.swing.JFrame {
                             quantite_tf.setText(String.valueOf(f.getQuantite()));
                             montant_tf.setText(String.valueOf(f.getMontantTotal()));
                             modePaiement_cbx.setSelectedItem(f.getModePaiement());
-                            client_cbx.setSelectedItem(f.getNomClient());
+                             for (Map.Entry<String, String> entry : clientIdMap.entrySet()) {
+                                if (entry.getValue().equals(String.valueOf(f.getIdClientF()))) {
+                                    client_cbx.setSelectedItem(entry.getKey());
+                                    break;
+                                }
+                            }
                         }
                     } catch (SQLException | ClassNotFoundException ex) {
                         Logger.getLogger(FactureForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -457,8 +485,8 @@ public class FactureForm extends javax.swing.JFrame {
             double quantite = Double.parseDouble(quantite_tf.getText().trim());
             double montant = Double.parseDouble(montant_tf.getText().trim());
             String modePaiement = modePaiement_cbx.getSelectedItem().toString();
-            long idClient = Long.parseLong((String)client_cbx.getClientProperty(client_cbx.getSelectedItem().toString()));
-            
+            String nomClient = client_cbx.getSelectedItem().toString();
+            long idClient = Long.parseLong(clientIdMap.get(nomClient));            
             Facture facture = new Facture(nomProduit, quantite, montant, modePaiement, idClient);
             
             boolean success = FactureDao.addFacture(facture);
@@ -492,8 +520,9 @@ public class FactureForm extends javax.swing.JFrame {
             double quantite = Double.parseDouble(quantite_tf.getText().trim());
             double montant = Double.parseDouble(montant_tf.getText().trim());
             String modePaiement = modePaiement_cbx.getSelectedItem().toString();
-            long idClient = Long.parseLong((String)client_cbx.getClientProperty(client_cbx.getSelectedItem().toString()));
-            
+            String nomClient = client_cbx.getSelectedItem().toString();
+            long idClient = Long.parseLong(clientIdMap.get(nomClient));
+        
             Facture facture = new Facture(
                 f.getIdFacture(),
                 nomProduit,
@@ -519,43 +548,34 @@ public class FactureForm extends javax.swing.JFrame {
     }//GEN-LAST:event_modifier_btnActionPerformed
 
     
-    
-    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    public  void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FactureForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FactureForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FactureForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FactureForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FactureForm().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException | InstantiationException | 
+             IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(FactureForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+FactureForm form = new FactureForm();
+form.setVisible(true);
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouter_btn;

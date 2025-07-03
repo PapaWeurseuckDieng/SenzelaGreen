@@ -168,6 +168,7 @@ public class ParcelleTable extends javax.swing.JFrame {
 
     private void retour_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour_btnActionPerformed
         // TODO add your handling code here:
+          new AdminDashboard().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_retour_btnActionPerformed
 

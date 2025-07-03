@@ -1,7 +1,7 @@
 package models;
 
 public class Utilisateur {
-    private int idUser;
+    private long idUser;
     private String nom;
     private String prenom;
     private String telephone;
@@ -13,7 +13,7 @@ public class Utilisateur {
     private String idCulture;
     
     // Constructeur
-    public Utilisateur(int idUser, String nom, String prenom, String telephone, String adresse, String role, String genre, String email, String mdp, String idCulture) {
+    public Utilisateur(long idUser, String nom, String prenom, String telephone, String adresse, String role, String genre, String email, String mdp) {
         this.idUser = idUser;
         this.nom = nom;
         this.prenom = prenom;
@@ -23,14 +23,24 @@ public class Utilisateur {
         this.genre = genre;
         this.email = email;
         this.mdp = mdp;
-        this.idCulture = idCulture;
+    }
+    
+    public Utilisateur( String nom, String prenom, String telephone, String adresse, String role, String genre, String email, String mdp ) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.role = role;
+        this.genre = genre;
+        this.email = email;
+        this.mdp = mdp;
     }
 
-    public int getIdUser() {
+    public long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(long idUser) {
         this.idUser = idUser;
     }
 
@@ -97,14 +107,7 @@ public class Utilisateur {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
-    
-    public String getIdCulture() {
-        return idCulture;
-    }
-    
-    public void setIdCulture(String idCulture) {
-        this.idCulture = idCulture;
-    }
+
     
     
     

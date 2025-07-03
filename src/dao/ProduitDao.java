@@ -9,8 +9,8 @@ import java.util.List;
 public class ProduitDao {
 
     private static final String SQL_SELECT_ALL = "SELECT * FROM produit";
-    private static final String SQL_INSERT = "INSERT INTO produit (nomProduit, description, stock, prixUnitaire, idUserF, idCultureF, codeFactureF) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE produit SET nomProduit=?, description=?, stock=?, prixUnitaire=?, idUserF=?, idCultureF=?, codeFactureF=? WHERE idProduit=?";
+    private static final String SQL_INSERT = "INSERT INTO produit (nomProduit, description, stock, prixUnitaire) VALUES (?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE produit SET nomProduit=?, description=?, stock=?, prixUnitaire=? WHERE idProduit=?";
     private static final String SQL_DELETE = "DELETE FROM produit WHERE idProduit=?";
 
     // Convertit une ligne de la table produit en un objet Produit
@@ -20,10 +20,10 @@ public class ProduitDao {
             rs.getString("nomProduit"),
             rs.getString("description"),
             rs.getDouble("stock"),
-            rs.getDouble("prixUnitaire"),
-            rs.getLong("idUserF"),
-            rs.getLong("idCultureF"),
-            rs.getString("codeFactureF")
+            rs.getDouble("prixUnitaire")
+//            rs.getLong("idUserF"),
+//            rs.getLong("idCultureF"),
+//            rs.getString("codeFactureF")
         );
     }
 
@@ -45,10 +45,10 @@ public class ProduitDao {
             p.getNomProduit(),
             p.getDescription(),
             p.getStock(),
-            p.getPrixUnitaire(),
-            p.getIdUserF(),
-            p.getIdCultureF(),
-            p.getCodeFactureF()
+            p.getPrixUnitaire()
+//            p.getIdUserF(),
+//            p.getIdCultureF(),
+//            p.getCodeFactureF()
         );
 
         return row > 0;
@@ -61,9 +61,9 @@ public class ProduitDao {
             p.getDescription(),
             p.getStock(),
             p.getPrixUnitaire(),
-            p.getIdUserF(),
-            p.getIdCultureF(),
-            p.getCodeFactureF(),
+//            p.getIdUserF(),
+//            p.getIdCultureF(),
+//            p.getCodeFactureF(),
             p.getIdProduit()
         );
 

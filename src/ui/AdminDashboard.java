@@ -250,8 +250,6 @@ private void setupLogoutHover() {
         jPanel3.setBackground(new java.awt.Color(51, 204, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\administrator-24.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -278,8 +276,6 @@ private void setupLogoutHover() {
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\administrator-48.png")); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         jPanel25.setBackground(new java.awt.Color(204, 0, 0));
@@ -323,7 +319,6 @@ private void setupLogoutHover() {
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\dashboard-2-32 (3).png")); // NOI18N
         jLabel8.setText("  Tableau de bord");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -351,7 +346,6 @@ private void setupLogoutHover() {
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\conference-32 (1).png")); // NOI18N
         jLabel7.setText("  Gestion Agriculteurs");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -366,8 +360,8 @@ private void setupLogoutHover() {
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -378,7 +372,6 @@ private void setupLogoutHover() {
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\leaf-32 (1).png")); // NOI18N
         jLabel9.setText("  Gestion Cultures");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -387,15 +380,15 @@ private void setupLogoutHover() {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel9)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 220, 50));
@@ -405,7 +398,6 @@ private void setupLogoutHover() {
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\map-marker-32 (1).png")); // NOI18N
         jLabel4.setText("  Gestion Parcelles");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -426,8 +418,8 @@ private void setupLogoutHover() {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 220, 50));
@@ -437,7 +429,6 @@ private void setupLogoutHover() {
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\cart-73-32.png")); // NOI18N
         jLabel10.setText("  Gestion Ventes");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -453,8 +444,8 @@ private void setupLogoutHover() {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 220, 50));
@@ -464,7 +455,6 @@ private void setupLogoutHover() {
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\database-32.png")); // NOI18N
         jLabel12.setText("  Gestion Ressources");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -480,8 +470,8 @@ private void setupLogoutHover() {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 220, 50));
@@ -491,7 +481,6 @@ private void setupLogoutHover() {
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\analytics-32.png")); // NOI18N
         jLabel11.setText("  Statistiques");
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -512,8 +501,8 @@ private void setupLogoutHover() {
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 220, 50));
@@ -528,7 +517,6 @@ private void setupLogoutHover() {
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\logout-32.png")); // NOI18N
         jLabel14.setText("  Déconnexion");
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -579,7 +567,6 @@ private void setupLogoutHover() {
 
         jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel22.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\map-marker-64.png")); // NOI18N
         jLabel22.setText(" 10");
         jPanel6.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
@@ -591,7 +578,6 @@ private void setupLogoutHover() {
 
         jLabel25.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel25.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\analytics-64.png")); // NOI18N
         jLabel25.setText(" 10");
         jPanel7.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
@@ -619,7 +605,6 @@ private void setupLogoutHover() {
 
         jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\leaf-64.png")); // NOI18N
         jLabel18.setText(" 10");
         jPanel11.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
@@ -631,7 +616,6 @@ private void setupLogoutHover() {
 
         jLabel26.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel26.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\conference-64.png")); // NOI18N
         jLabel26.setText(" 10");
         jPanel22.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
@@ -643,7 +627,6 @@ private void setupLogoutHover() {
 
         jLabel23.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel23.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\cart-73-64.png")); // NOI18N
         jLabel23.setText(" 10");
         jPanel23.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
@@ -655,7 +638,6 @@ private void setupLogoutHover() {
 
         jLabel24.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel24.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Images\\java_icon\\database-64.png")); // NOI18N
         jLabel24.setText(" 10");
         jPanel24.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
@@ -705,26 +687,25 @@ private void setupLogoutHover() {
         System.exit(0);
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-
-        new ConnexionForm().setVisible(true);
-        this.dispose();     
-    }//GEN-LAST:event_jLabel4MouseClicked
-
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
-         new ConnexionForm().setVisible(true);
-        this.dispose();
+       
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void jPanel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel21MouseClicked
         // TODO add your handling code here:
-         new ConnexionForm().setVisible(true);
-         this.dispose();
+//         new ConnexionForm().setVisible(true);
+//         this.dispose();
     }//GEN-LAST:event_jPanel21MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+
+        new ParcelleTable().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
 private void setupHoverEffects() {
     // Liste des panels cliquables (les rectangles du menu)
-    JPanel[] menuPanels = {jPanel12, jPanel13, jPanel16, jPanel17, jPanel19, jPanel21};
+    JPanel[] menuPanels = {jPanel12, jPanel13, jPanel17, jPanel19, jPanel21};
     
     for (JPanel panel : menuPanels) {
         // Style initial

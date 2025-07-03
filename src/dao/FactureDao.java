@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactureDao {
-    private static final String SQL_SELECT_ALL = "SELECT f.*, c.nom, c.prenom FROM facture f JOIN client c ON f.idClientF = c.idClient";
+    private static final String SQL_SELECT_ALL = "SELECT f.*, c.nomClient, c.prenomClient FROM facture f JOIN client c ON f.idClientF = c.idClient";
     private static final String SQL_INSERT = "INSERT INTO facture (nomProduit, quantite, montantTotal, modePaiement, idClientF) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE facture SET nomProduit=?, quantite=?, montantTotal=?, modePaiement=?, idClientF=? WHERE idFacture=?";
     private static final String SQL_DELETE = "DELETE FROM facture WHERE idFacture=?";
-    private static final String SQL_GET_CLIENTS = "SELECT idClient, CONCAT(nom, ' ', prenom) AS nomComplet FROM client";
+    private static final String SQL_GET_CLIENTS = "SELECT idClient, CONCAT(nomClient, ' ', prenomClient) AS nomComplet FROM client";
 
     private static Facture convertResultSetToFacture(ResultSet rs) throws SQLException {
         return new Facture(
@@ -22,7 +22,7 @@ public class FactureDao {
             rs.getDouble("montantTotal"),
             rs.getString("modePaiement"),
             rs.getLong("idClientF"),
-            rs.getString("nom") + " " + rs.getString("prenom")
+            rs.getString("nomClient") + " " + rs.getString("prenomClient")
         );
     }
 

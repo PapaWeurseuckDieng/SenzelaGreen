@@ -8,19 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactureDao {
-
-    private static final String SQL_SELECT_ALL = "SELECT * FROM facture";
-    private static final String SQL_INSERT = "INSERT INTO facture (codeFacture, quantite, datePaiement, montantTotal, idUserF) VALUES (?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE facture SET quantite=?, datePaiement=?, montantTotal=?, idUserF=? WHERE codeFacture=?";
-    private static final String SQL_DELETE = "DELETE FROM facture WHERE codeFacture=?";
+    private static final String SQL_SELECT_ALL = "SELECT f.*, c.nom, c.prenom FROM facture f JOIN client c ON f.idClientF = c.idClient";
+    private static final String SQL_INSERT = "INSERT INTO facture (nomProduit, quantite, montantTotal, modePaiement, idClientF) VALUES (?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE facture SET nomProduit=?, quantite=?, montantTotal=?, modePaiement=?, idClientF=? WHERE idFacture=?";
+    private static final String SQL_DELETE = "DELETE FROM facture WHERE idFacture=?";
+    private static final String SQL_GET_CLIENTS = "SELECT idClient, CONCAT(nom, ' ', prenom) AS nomComplet FROM client";
 
     private static Facture convertResultSetToFacture(ResultSet rs) throws SQLException {
         return new Facture(
-            rs.getString("codeFacture"),
+            rs.getLong("idFacture"),
+            rs.getString("nomProduit"),
             rs.getDouble("quantite"),
-            rs.getDate("datePaiement"),
             rs.getDouble("montantTotal"),
-            rs.getLong("idUserF")
+            rs.getString("modePaiement"),
+            rs.getLong("idClientF"),
+            rs.getString("nom") + " " + rs.getString("prenom")
         );
     }
 
@@ -37,11 +39,11 @@ public class FactureDao {
 
     public static boolean addFacture(Facture f) throws SQLException, ClassNotFoundException {
         int row = DatabaseService.executeUpdate(SQL_INSERT,
-            f.getCodeFacture(),
+            f.getNomProduit(),
             f.getQuantite(),
-            new java.sql.Date(f.getDatePaiement().getTime()),
             f.getMontantTotal(),
-            f.getIdUserF()
+            f.getModePaiement(),
+            f.getIdClientF()
         );
 
         return row > 0;
@@ -49,18 +51,35 @@ public class FactureDao {
 
     public static boolean updateFacture(Facture f) throws SQLException, ClassNotFoundException {
         int row = DatabaseService.executeUpdate(SQL_UPDATE,
+            f.getNomProduit(),
             f.getQuantite(),
-            new java.sql.Date(f.getDatePaiement().getTime()),
             f.getMontantTotal(),
-            f.getIdUserF(),
-            f.getCodeFacture()
+            f.getModePaiement(),
+            f.getIdClientF(),
+            f.getIdFacture()
         );
 
         return row > 0;
     }
 
-    public static boolean deleteFacture(String codeFacture) throws SQLException, ClassNotFoundException {
-        int row = DatabaseService.executeUpdate(SQL_DELETE, codeFacture);
+    public static boolean deleteFacture(long idFacture) throws SQLException, ClassNotFoundException {
+        int row = DatabaseService.executeUpdate(SQL_DELETE, idFacture);
         return row > 0;
     }
+
+    public static List<String[]> getClientsForComboBox() throws SQLException, ClassNotFoundException {
+        List<String[]> clients = new ArrayList<>();
+        ResultSet rs = DatabaseService.executeQuery(SQL_GET_CLIENTS);
+
+        while (rs.next()) {
+            clients.add(new String[]{
+                rs.getString("idClient"),
+                rs.getString("nomComplet")
+            });
+        }
+
+        return clients;
+    }
+
+    
 }

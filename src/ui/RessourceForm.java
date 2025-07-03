@@ -1,22 +1,127 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package ui.Ressource;
 
-/**
- *
- * @author MoRF9
- */
+package ui;
+
+import dao.RessourceDao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import models.Ressource;
+import utils.UtilsFonction;
+import java.util.*;
+
+
 public class RessourceForm extends javax.swing.JFrame {
+   RessourceDao ressourceDao;
 
     /**
      * Creates new form RessourceForm
      */
+    
     public RessourceForm() {
         initComponents();
+        loadTypeRessource();
+        loadUnite();
+        affichageRessource();
+        getformuaire();
+        resetInput();
+        ressourceDao = new RessourceDao();
     }
+    
+    private void loadTypeRessource() {
+        typeRessource_cbx.removeAllItems();
+        List<String> types = List.of("Engrais", "Pesticide", "Semence", "Eau");
+        for (String type : types) {
+            typeRessource_cbx.addItem(type);
+        }
+        typeRessource_cbx.setSelectedIndex(-1);
+    }
+    
+    private void loadUnite() {
+        unite_cbx.removeAllItems();
+        List<String> unites = List.of("kg", "L", "m³", "unité");
+        for (String unite : unites) {
+            unite_cbx.addItem(unite);
+        }
+        unite_cbx.setSelectedIndex(-1);
+    }
+    
+    private boolean validerFields() {
+        String typeRessource = typeRessource_cbx.getSelectedIndex() == -1 ? "" : typeRessource_cbx.getSelectedItem().toString();
+        String quantite = quantite_tf.getText().trim();
+        String unite = unite_cbx.getSelectedIndex() == -1 ? "" : unite_cbx.getSelectedItem().toString();
+        
+        if(typeRessource.isEmpty() || quantite.isEmpty() || unite.isEmpty()) {
+            showMessageError("Veuillez remplir tous les champs");
+            return false;
+        }
+        
+        try {
+            Double qte = Double.valueOf(quantite);
+            if(qte <= 0) {
+                showMessageError("La quantité doit être positive");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showMessageError("La quantité doit être un nombre");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private void showMessageError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Erreur", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void resetInput() {
+        typeRessource_cbx.setSelectedIndex(-1);
+        quantite_tf.setText("");
+        unite_cbx.setSelectedIndex(-1);
+    }
+    
+    Ressource r;
+    private void getformuaire() {
+        
+        // Si vous ajoutez un tableau pour afficher les ressources, implémentez cette méthode
+        // similaire à celle de ParcelleForm
 
+        tableauRessource.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = tableauRessource.getSelectedRow();
+                if (selectedRow != -1) {
+
+                    try {
+                        List<Ressource> mylist = RessourceDao.getAllRessources();
+                        r = mylist.get(selectedRow);
+                        if (r!= null) {
+                            typeRessource_cbx.setSelectedItem(r.getTypeRessource().toString());
+                            quantite_tf.setText(String.valueOf(r.getQuantite()));
+                            unite_cbx.setSelectedItem(r.getUnite().toString());
+
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+            }
+        });
+
+    }
+    
+    private void affichageRessource() {
+        try {
+            List<Ressource> allRessources = ressourceDao.getAllRessources();
+            // Si vous ajoutez un tableau, utilisez:
+             UtilsFonction.displayDataInTable(allRessources, tableauRessource, List.of("idRessource"));
+        } catch(SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +146,9 @@ public class RessourceForm extends javax.swing.JFrame {
         quantite_tf = new javax.swing.JTextField();
         annuler_btn = new javax.swing.JButton();
         ajouter_btn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableauRessource = new javax.swing.JTable();
+        modifier_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,8 +224,18 @@ public class RessourceForm extends javax.swing.JFrame {
         jLabel8.setText("Unité");
 
         typeRessource_cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        typeRessource_cbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeRessource_cbxActionPerformed(evt);
+            }
+        });
 
         unite_cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        unite_cbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unite_cbxActionPerformed(evt);
+            }
+        });
 
         quantite_tf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,55 +263,96 @@ public class RessourceForm extends javax.swing.JFrame {
             }
         });
 
+        tableauRessource.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Type", "Quantité", "Unité"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableauRessource);
+
+        modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
+        modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
+        modifier_btn.setText("Modifier");
+        modifier_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifier_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(185, 185, 185)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(quantite_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(typeRessource_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(unite_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 232, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ajouter_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(264, 264, 264))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(208, 208, 208)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(372, 372, 372))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ajouter_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(typeRessource_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(unite_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quantite_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(249, 249, 249)
+                        .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 99, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(typeRessource_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(typeRessource_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(quantite_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(unite_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quantite_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(unite_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ajouter_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(annuler_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -222,12 +381,83 @@ public class RessourceForm extends javax.swing.JFrame {
     }//GEN-LAST:event_annuler_btnActionPerformed
 
     private void ajouter_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouter_btnActionPerformed
-
+    
+        try {
+            if(!validerFields()) {
+                return;
+            }
+            
+            String type = typeRessource_cbx.getSelectedItem().toString();
+            double quantite = Double.parseDouble(quantite_tf.getText());
+            String unite = unite_cbx.getSelectedItem().toString();
+            
+            Ressource ressource = new Ressource(type, quantite, unite);
+            
+            boolean success = RessourceDao.addRessource(ressource);
+            
+            if(success) {
+                JOptionPane.showMessageDialog(this, "Ajout réussi");
+                resetInput();
+                affichageRessource();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erreur lors de l'ajout");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_ajouter_btnActionPerformed
 
     private void quantite_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantite_tfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_quantite_tfActionPerformed
+
+    private void typeRessource_cbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeRessource_cbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeRessource_cbxActionPerformed
+
+    private void unite_cbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unite_cbxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unite_cbxActionPerformed
+
+    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
+        // TODO add your handling code here:
+        try {
+            if(!validerFields()) {
+                return;
+            }
+            
+            // Supposons que vous ayez un tableau et que r soit l'objet sélectionné
+            if(r == null) {
+                JOptionPane.showMessageDialog(this, "Aucune ressource sélectionnée");
+                return;
+            }
+            
+            Ressource ressource = new Ressource(
+                r.getIdRessource(),
+                typeRessource_cbx.getSelectedItem().toString(),
+                Double.parseDouble(quantite_tf.getText()),
+                unite_cbx.getSelectedItem().toString()
+            );
+            
+            boolean success = RessourceDao.updateRessource(ressource);
+            
+            if(success) {
+                JOptionPane.showMessageDialog(this, "Modification réussie");
+                resetInput();
+                affichageRessource();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erreur lors de la modification");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RessourceForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }//GEN-LAST:event_modifier_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,6 +494,7 @@ public class RessourceForm extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouter_btn;
     private javax.swing.JButton annuler_btn;
@@ -276,9 +507,12 @@ public class RessourceForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modifier_btn;
     private javax.swing.JTextField quantite_tf;
     private javax.swing.JPanel senzela;
+    private javax.swing.JTable tableauRessource;
     private javax.swing.JComboBox<String> typeRessource_cbx;
     private javax.swing.JComboBox<String> unite_cbx;
     // End of variables declaration//GEN-END:variables
-}
+

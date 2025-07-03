@@ -4,37 +4,38 @@
  */
 package ui;
 
-import dao.ProduitDao;
+import dao.ClientDao;
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Produit;
-
+import models.Client;
 import utils.UtilsFonction;
 
 /**
  *
  * @author MoRF9
  */
-public class ProduitTable extends javax.swing.JFrame {
-    ProduitDao produitDao;
+public class ClientTable extends javax.swing.JFrame {
+    ClientDao clientDao;
     /**
-     * Creates new form ProduitTable
+     * Creates new form ClientTable
      */
-    public ProduitTable() {
+    public ClientTable() {
         initComponents();
-        affichageProduit();
+        affichageClient();
     }
-
-      private void affichageProduit() {
+    
+        private void affichageClient() {
         try {
-            List<Produit> allProduits = produitDao.getAllProduits();
-            UtilsFonction.displayDataInTable(allProduits, tableau, List.of("idProduit"));
+            List<Client> allClients = clientDao.getAllClients();
+            UtilsFonction.displayDataInTable(allClients, tableauClient, List.of("idClient"));
         } catch(SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(ProduitTable.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,13 +52,12 @@ public class ProduitTable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableau = new javax.swing.JTable();
+        tableauClient = new javax.swing.JTable();
         supprimer_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         senzela.setBackground(new java.awt.Color(0, 102, 0));
-        senzela.setPreferredSize(new java.awt.Dimension(348, 356));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,35 +85,41 @@ public class ProduitTable extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(senzelaLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel4))
-                    .addGroup(senzelaLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
+                        .addGap(122, 122, 122)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(senzelaLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel3)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel4)))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, senzelaLayout.createSequentialGroup()
+                    .addContainerGap(67, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(55, 55, 55)))
         );
         senzelaLayout.setVerticalGroup(
             senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(senzelaLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(96, 96, 96)
-                .addComponent(jLabel3)
-                .addGap(31, 31, 31)
+                .addGap(122, 122, 122)
                 .addComponent(jLabel2)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addContainerGap(398, Short.MAX_VALUE))
+            .addGroup(senzelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(senzelaLayout.createSequentialGroup()
+                    .addGap(160, 160, 160)
+                    .addComponent(jLabel3)
+                    .addContainerGap(292, Short.MAX_VALUE)))
         );
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel5.setText("Liste des Produits");
+        jLabel5.setText("Liste des Clients");
 
-        tableau.setModel(new javax.swing.table.DefaultTableModel(
+        tableauClient.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tableauClient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -121,18 +127,18 @@ public class ProduitTable extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nom Produit", "Description", "Stock", "Prix Unitaire"
+                "Nom", "Prenom", "Adresse", "Telephone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableau);
+        jScrollPane1.setViewportView(tableauClient);
 
         supprimer_btn.setBackground(new java.awt.Color(0, 102, 0));
         supprimer_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -150,29 +156,32 @@ public class ProduitTable extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(senzela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
-                        .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(324, 324, 324)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(107, 107, 107))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(378, 378, 378))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(senzela, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(senzela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(71, 71, 71)
                 .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,20 +208,20 @@ public class ProduitTable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProduitTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProduitTable().setVisible(true);
+                new ClientTable().setVisible(true);
             }
         });
     }
@@ -226,6 +235,6 @@ public class ProduitTable extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel senzela;
     private javax.swing.JButton supprimer_btn;
-    private javax.swing.JTable tableau;
+    private javax.swing.JTable tableauClient;
     // End of variables declaration//GEN-END:variables
 }

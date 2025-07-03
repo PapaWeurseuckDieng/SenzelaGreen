@@ -19,12 +19,13 @@ public class ParcelleTable extends javax.swing.JFrame {
     public ParcelleTable() {
         initComponents();
         affichageParcelle();
+      
     }
-    
+  
     private void affichageParcelle(){
         try{
             List<Parcelle> allParcelle = parcelDao.getAllParcelles();
-            UtilsFonction.displayDataInTable(allParcelle, tableau, List.of("idParcelle", "idUserF"));
+            UtilsFonction.displayDataInTable(allParcelle, tableauParcelle, List.of("idParcelle", "idUserF"));
         }catch(SQLException | ClassNotFoundException ex){
             Logger.getLogger(ParcelleForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,9 +47,8 @@ public class ParcelleTable extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableau = new javax.swing.JTable();
-        modifier_btn = new javax.swing.JButton();
-        supprimer_btn = new javax.swing.JButton();
+        tableauParcelle = new javax.swing.JTable();
+        retour_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,14 +102,14 @@ public class ParcelleTable extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 102, 0));
         jLabel5.setText("Liste des Parcelles");
 
-        tableau.setModel(new javax.swing.table.DefaultTableModel(
+        tableauParcelle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -120,25 +120,15 @@ public class ParcelleTable extends javax.swing.JFrame {
                 "Superficie", "Nom Parcelle", "PH Sol", "Type Sol"
             }
         ));
-        jScrollPane1.setViewportView(tableau);
+        jScrollPane1.setViewportView(tableauParcelle);
 
-        modifier_btn.setBackground(new java.awt.Color(0, 102, 0));
-        modifier_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        modifier_btn.setForeground(new java.awt.Color(255, 255, 255));
-        modifier_btn.setText("Modifier");
-        modifier_btn.addActionListener(new java.awt.event.ActionListener() {
+        retour_btn.setBackground(new java.awt.Color(0, 102, 0));
+        retour_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        retour_btn.setForeground(new java.awt.Color(255, 255, 255));
+        retour_btn.setText("Retour en arriere");
+        retour_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifier_btnActionPerformed(evt);
-            }
-        });
-
-        supprimer_btn.setBackground(new java.awt.Color(0, 102, 0));
-        supprimer_btn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        supprimer_btn.setForeground(new java.awt.Color(255, 255, 255));
-        supprimer_btn.setText("Supprimer");
-        supprimer_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                supprimer_btnActionPerformed(evt);
+                retour_btnActionPerformed(evt);
             }
         });
 
@@ -148,48 +138,38 @@ public class ParcelleTable extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(senzela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(313, 313, 313))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(196, 196, 196)
-                                .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(272, 272, 272))))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(151, 151, 151))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(retour_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(senzela, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(senzela, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifier_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supprimer_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(132, 132, 132))
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(retour_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifier_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier_btnActionPerformed
+    private void retour_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retour_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modifier_btnActionPerformed
-
-    private void supprimer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supprimer_btnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_retour_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,9 +213,8 @@ public class ParcelleTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modifier_btn;
+    private javax.swing.JButton retour_btn;
     private javax.swing.JPanel senzela;
-    private javax.swing.JButton supprimer_btn;
-    private javax.swing.JTable tableau;
+    private javax.swing.JTable tableauParcelle;
     // End of variables declaration//GEN-END:variables
 }

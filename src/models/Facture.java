@@ -3,40 +3,50 @@ package models;
 import java.util.Date;
 
 public class Facture {
-    private String codeFacture;
+    private long idFacture;
+    private String nomProduit;
     private double quantite;
-    private Date datePaiement;
     private double montantTotal;
-    private long idUserF;
+    private String modePaiement;
+    private long idClientF;
+    private String nomClient;
 
     // Constructeur vide
     public Facture() {}
 
-    // Constructeur sans codeFacture (si généré ailleurs)
-    public Facture(double quantite, Date datePaiement, double montantTotal, long idUserF) {
+    public Facture(long idFacture, String nomProduit, double quantite, double montantTotal, String modePaiement, long idClientF) {
+        this.idFacture = idFacture;
+        this.nomProduit = nomProduit;
         this.quantite = quantite;
-        this.datePaiement = datePaiement;
         this.montantTotal = montantTotal;
-        this.idUserF = idUserF;
+        this.modePaiement = modePaiement;
+        this.idClientF = idClientF;
     }
-
-    // Constructeur complet
-    public Facture(String codeFacture, double quantite, Date datePaiement, double montantTotal, long idUserF) {
-        this.codeFacture = codeFacture;
+    
+    public Facture(String nomProduit, double quantite, double montantTotal, String modePaiement, long idClientF) {
+        this.nomProduit = nomProduit;
         this.quantite = quantite;
-        this.datePaiement = datePaiement;
         this.montantTotal = montantTotal;
-        this.idUserF = idUserF;
+        this.modePaiement = modePaiement;
+        this.idClientF = idClientF;
+    }
+    
+    
+
+    public long getIdFacture() {
+        return idFacture;
     }
 
-    // Getters & Setters
-
-    public String getCodeFacture() {
-        return codeFacture;
+    public void setIdFacture(long idFacture) {
+        this.idFacture = idFacture;
     }
 
-    public void setCodeFacture(String codeFacture) {
-        this.codeFacture = codeFacture;
+    public String getNomProduit() {
+        return nomProduit;
+    }
+
+    public void setNomProduit(String nomProduit) {
+        this.nomProduit = nomProduit;
     }
 
     public double getQuantite() {
@@ -47,14 +57,6 @@ public class Facture {
         this.quantite = quantite;
     }
 
-    public Date getDatePaiement() {
-        return datePaiement;
-    }
-
-    public void setDatePaiement(Date datePaiement) {
-        this.datePaiement = datePaiement;
-    }
-
     public double getMontantTotal() {
         return montantTotal;
     }
@@ -63,11 +65,31 @@ public class Facture {
         this.montantTotal = montantTotal;
     }
 
-    public long getIdUserF() {
-        return idUserF;
+    public String getModePaiement() {
+        return modePaiement;
     }
 
-    public void setIdUserF(long idUserF) {
-        this.idUserF = idUserF;
+    public void setModePaiement(String modePaiement) {
+        this.modePaiement = modePaiement;
     }
+
+    public long getIdClientF() {
+        return idClientF;
+    }
+
+    public void setIdClientF(long idClientF) {
+        this.idClientF = idClientF;
+    }
+
+    public String getNomClient() {
+        return nomClient;
+    }
+
+    public void setNomClient(String nomClient) {
+        this.nomClient = nomClient;
+    }
+    
+
+    
+    
 }

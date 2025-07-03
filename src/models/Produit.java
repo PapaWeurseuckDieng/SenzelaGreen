@@ -14,14 +14,14 @@ public class Produit {
     public Produit() {}
 
     // Constructeur sans ID (pour insertion)
-    public Produit(String nomProduit, String description, double stock, double prixUnitaire, long idUserF, long idCultureF, String codeFactureF) {
+    public Produit(String nomProduit, String description, double stock, double prixUnitaire) {
         this.nomProduit = nomProduit;
         this.description = description;
         this.stock = stock;
         this.prixUnitaire = prixUnitaire;
-        this.idUserF = idUserF;
-        this.idCultureF = idCultureF;
-        this.codeFactureF = codeFactureF;
+//        this.idUserF = idUserF;
+//        this.idCultureF = idCultureF;
+//        this.codeFactureF = codeFactureF;
     }
 
     // Constructeur complet avec ID
@@ -35,6 +35,8 @@ public class Produit {
         this.idCultureF = idCultureF;
         this.codeFactureF = codeFactureF;
     }
+    
+
 
     // Getters et Setters
 
@@ -100,5 +102,9 @@ public class Produit {
 
     public void setCodeFactureF(String codeFactureF) {
         this.codeFactureF = codeFactureF;
+    }
+
+    public void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

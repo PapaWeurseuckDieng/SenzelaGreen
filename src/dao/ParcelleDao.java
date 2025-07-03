@@ -16,15 +16,23 @@ public class ParcelleDao {
 
     private static Parcelle convertResultSetToParcelle(ResultSet rs) throws SQLException {
         return new Parcelle(
-            (int) rs.getLong("idParcelle"),
+            rs.getLong("idParcelle"),
             rs.getDouble("superficie"),
             rs.getString("nomParcelle"),
             rs.getDouble("pHSol"),
             rs.getString("typeSol")
-//            rs.getInt("idUserF")
         );
     }
 
+    public static Parcelle getParcelleById(long id) throws SQLException, ClassNotFoundException {
+        String SQL_SELECT_BY_ID = "SELECT * FROM parcelle WHERE idParcelle=?";
+        ResultSet rs = DatabaseService.executeQuery(SQL_SELECT_BY_ID, id);
+
+        if(rs.next()) {
+            return convertResultSetToParcelle(rs);
+        }
+        return null;
+    }
     public static List<Parcelle> getAllParcelles() throws SQLException, ClassNotFoundException {
         
         List<Parcelle> parcelles = new ArrayList<>();
@@ -43,7 +51,6 @@ public class ParcelleDao {
             p.getNomParcelle(),
             p.getPHSol(),
             p.getTypeSol()
-//            p.getIdUserF()
         );
 
         return row > 0;
@@ -55,7 +62,6 @@ public class ParcelleDao {
             p.getNomParcelle(),
             p.getPHSol(),
             p.getTypeSol(),
-//            p.getIdUserF(),
             p.getIdParcelle()
         );
 
@@ -67,5 +73,4 @@ public class ParcelleDao {
         return row > 0;
     }
 }
-
 
